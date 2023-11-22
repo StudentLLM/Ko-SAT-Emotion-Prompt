@@ -1,1 +1,2 @@
-# Ko-SAT-Emotion-Prompt 🥼💊
+# KoSAT Emotion-Prompt 🥼💊
+
