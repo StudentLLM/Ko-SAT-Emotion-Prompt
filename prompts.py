@@ -2,6 +2,9 @@ import openai
 
 
 def basic_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False):
+    # 여기에 Emotion Prompt를 적용하면 될 것 같음.
+    # 예를 들어서 뭐 너는 서울대를 가려고 하는 학생이야! 너는 열심히 공부했고 문제를 잘 풀어낼 수 있을 거야. 그리고 틀리지 않았는지 한 번 검토해보는 것도 잊지 말고!
+    # 이런 느낌?? 몰라 나도 잘
     system_prompt = """
         국어 시험 문제를 푸는 똑똑한 학생으로써 다음 문제의 답을 구하세요.
         지문을 읽고, 질문에 대한 답을 1부터 5까지의 선택지 중에 한 개만 골라서 대답해야 합니다.
@@ -32,6 +35,14 @@ def basic_prompt(model, paragraph, question, choices, question_plus="", no_parag
         1번, 2번, 3번, 4번, 5번 중에 하나를 정답으로 고르세요. 정답 :
     """
 
+    """
+    질문의 구성 형식이
+    paragraph + question_plus + question + choices 인 것 같음.
+
+    우리의 EmotionPrompt는 System Prompt로 주는 것 같은데 이거는 얘기해봐야 할 듯
+    """
+
+    # ChatGPT, GPT-4 API generation
     completion = openai.chat.completions.create(
         model=model,
         messages=[
