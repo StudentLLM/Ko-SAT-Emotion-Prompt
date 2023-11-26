@@ -6,6 +6,7 @@ import click
 import openai
 from dotenv import load_dotenv
 from tqdm import tqdm
+import argparse
 
 from english_prompts import basic_prompt
 
@@ -15,6 +16,15 @@ OPENAI_MODELS = [
     "gpt-3.5-turbo-1106",
     "gpt-3.5"
 ]
+
+def arg_parse():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--test_file", type=str, help="test file path")
+    parser.add_argument("--save_path", type=str, help="save path")
+    parser.add_argument("--hf_token", type=str, help=f"select openAI model to use: {OPENAI_MODELS}")
+
+    return parser.parse_args()
 
 # file load code
 def load_test(filepath: str):
@@ -52,11 +62,12 @@ def get_prompt_by_type(type_num: int) -> callable:
     if type_num == 0:
         return basic_prompt
 
-@click.command()
-@click.option('--test_file', help='test file path')
-@click.option('--save_path', help='save path')
-@click.option('--model', help=f'select openAI model to use: {OPENAI_MODELS}')
-def main(test_file, save_path, model):
+def main():
+    args = arg_parse()
+    test_file = args.test_file
+    save_path = args.save_path
+    model = args.model
+    
     if not test_file:
         raise ValueError("test file not set!")
     if not save_path:
