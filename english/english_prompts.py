@@ -58,6 +58,8 @@ def basic_prompt(model, question, choices, question_plus=""):
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
-        ]
+        ],
+        top_p=0.8,
+        frequency_penalty=0.5
     )
     return completion.choices[0].message.content
