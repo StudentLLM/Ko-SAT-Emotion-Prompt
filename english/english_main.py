@@ -7,7 +7,7 @@ import openai
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-from math_prompts import basic_prompt, no_choice_prompt
+from english_prompts import basic_prompt
 
 OPENAI_MODELS = [
     "gpt-4-1106-preview",
@@ -48,11 +48,9 @@ def set_openai_key():
         raise ValueError("OPENAI API KEY empty!")
 
 def get_prompt_by_type(type_num: int) -> callable:
-    # 0 : 4지선다, 1 : 단답형
+    # 0 : ALL
     if type_num == 0:
         return basic_prompt
-    else:
-        return no_choice_prompt
 
 @click.command()
 @click.option('--test_file', help='test file path')
@@ -74,40 +72,60 @@ def main(test_file, save_path, model):
     test = load_test(test_file)
 
     _id = 0   # question_id를 확인하기 위한 변수
+
+    def get_answer(problem):
+        _id += 1
+        prompt_func = get_prompt_by_type(int(problem["type"]))
+        answer = None
+        
+        for i in range(3):
+            try:
+                answer = prompt_func(
+                    model=model,
+                    question=problem["question"],
+                    choices=problem["choices"],
+                    question_plus=problem["question_plus"],
+                )
+                logging.info(answer)
+                break
+            except Exception as e:
+                print(f"RETRY, Failed! id: {_id} exception: {str(e)}")
+
+        # 만약 모델이 답을 생성할 수 없다면 failed problem의 index 번호를 출력
+        if not answer:
+            print(f"RETRY FAILED id: {_id}")
+            continue
+
+        return answer
+        
     with open(save_path, "w", encoding="UTF-8") as fw:
-
+        answer = None
+        
         for problem_index, problem in tqdm(enumerate(test), total=len(test)):
-            _id += 1
-            prompt_func = get_prompt_by_type(int(problem["type"]))
-            answer = None
+            # paragraph가 있는 문제의 경우
+            if "paragraph" in list(problem.keys()):
+                paragraph = problem["paragraph"]
+                for prob in problem:
+                    prob["question"] = paragraph + prob["question"]
+                    answer = get_answer(prob)
 
-            # 3번 정도 시도해보면서 모델이 답을 출력할 수 있도록 함.
-            for i in range(3):
-                try:
-                    answer = prompt_func(
-                        model=model,
-                        question=problem["question"],
-                        choices=problem["choices"],
-                        question_plus=problem["question_plus"],
-                    )
-                    logging.info(answer)
-                    break
-                except Exception as e:
-                    print(f"RETRY, Failed! id: {_id} exception: {str(e)}")
+                    # answer file에 문제, 정답, 배점, GPT의 풀이를 입력
+                    fw.write(f"""{_id}번 문제: {prob['question'].replace(paragraph, "")}
+                             정답: {prob['answer']}
+                             배점: {prob['score']}
+                             GPT 풀이: {answer}
+                            ----------------------\n""")
+                    fw.flush()   # buffer에 쌓인 메모리를 비워주는 함수. 보다 효율적으로 사용하기 위해 필요
+            else:
+                answer = get_answer(problem)
 
-            # 만약 모델이 답을 생성할 수 없다면 failed problem의 index 번호를 출력
-            if not answer:
-                print(f"RETRY FAILED id: {_id}")
-                continue
-
-            # answer file에 문제, 정답, 배점, GPT의 풀이를 입력
-            fw.write(f"""{_id}번 문제: {problem['question']}
-                     정답: {problem['answer']}
-                     배점: {problem['score']}
-                     GPT 풀이: {answer}
-                    ----------------------\n""")
-            fw.flush()   # buffer에 쌓인 메모리를 비워주는 함수. 보다 효율적으로 사용하기 위해 필요
-
+                # answer file에 문제, 정답, 배점, GPT의 풀이를 입력
+                fw.write(f"""{_id}번 문제: {problem['question']}
+                         정답: {problem['answer']}
+                         배점: {problem['score']}
+                         GPT 풀이: {answer}
+                        ----------------------\n""")
+                fw.flush()   # buffer에 쌓인 메모리를 비워주는 함수. 보다 효율적으로 사용하기 위해 필요
 
 if __name__ == "__main__":
     main()
