@@ -50,14 +50,14 @@ def basic_prompt(model, question, choices, question_plus=""):
     """
 
     # for test
-    return system_prompt + user_prompt
+    # return system_prompt + user_prompt
     
     # ChatGPT, GPT-4 API generation
-    # completion = openai.chat.completions.create(
-    #     model=model,
-    #     messages=[
-    #         {"role": "system", "content": system_prompt},
-    #         {"role": "user", "content": user_prompt}
-    #     ]
-    # )
-    # return completion.choices[0].message.content
+    completion = openai.chat.completions.create(
+        model=model,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ]
+    )
+    return completion.choices[0].message.content
