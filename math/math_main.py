@@ -64,7 +64,7 @@ def get_prompt_by_type(type_num: int) -> callable:
     else:
         return no_choice_prompt
 
-def main(test_file, save_path, model):
+def main():
     args = arg_parse()
     test_file = args.test_file
     save_path = args.save_path
