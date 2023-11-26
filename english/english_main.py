@@ -105,7 +105,6 @@ def main():
         # 만약 모델이 답을 생성할 수 없다면 failed problem의 index 번호를 출력
         if not answer:
             print(f"RETRY FAILED id: {_id}")
-            continue
 
         return answer
         
