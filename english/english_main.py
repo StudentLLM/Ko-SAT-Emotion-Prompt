@@ -115,7 +115,7 @@ def main():
             # paragraph가 있는 문제의 경우
             if "paragraph" in list(problem.keys()):
                 paragraph = problem["paragraph"]
-                for prob in problem:
+                for prob in problem["problems"]:
                     prob["question"] = paragraph + prob["question"]
                     answer = get_answer(prob)
 
