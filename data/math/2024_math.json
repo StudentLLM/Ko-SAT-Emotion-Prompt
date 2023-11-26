@@ -302,7 +302,7 @@
     {
         "type": 1,
         "question_id": "21",
-        "question": "양수 a에 대하여 x \\geq -1에서 정의된 함수 f(x)는\n\nf(x)=\\left\\{\\begin{matrix} -x^2+6x & (-1\leq x < 6) \\\na\\log_4(x-5) & (x\\geq 6) \\end{matrix}\\right.\n\n이다. t\\geq 0인 실수 t에 대하여 닫힌구간 [t-1, t+1]에서의 f(x)의 최댓값을 g(t)라 하자. 구간 [0,\\infty)에서 함수 g(t)의 최솟값이 5가 되도록 하는 양수 a의 최솟값을 구하시오.",
+        "question": "양수 a에 대하여 x \\geq -1에서 정의된 함수 f(x)는\n\nf(x)=\\left\\{\\begin{matrix} -x^2+6x & (-1\\leq x < 6) \\\na\\log_4(x-5) & (x\\geq 6) \\end{matrix}\\right.\n\n이다. t\\geq 0인 실수 t에 대하여 닫힌구간 [t-1, t+1]에서의 f(x)의 최댓값을 g(t)라 하자. 구간 [0,\\infty)에서 함수 g(t)의 최솟값이 5가 되도록 하는 양수 a의 최솟값을 구하시오.",
         "question_plus": "",
         "choices": [
             "",
