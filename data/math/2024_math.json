@@ -35,11 +35,11 @@
         "question": "\\frac{3}{2}\\pi<\\theta<2\\pi인 \\theta에 대하여 \\sin(-\\theta)=\\frac{1}{3}일 때, \\tan\\theta의 값은?",
         "question_plus": "",
         "choices": [
-            "-\\frac{\sqrt{2}}{2}",
-            "-\\frac{\sqrt{2}}{4}",
+            "-\\frac{\\sqrt{2}}{2}",
+            "-\\frac{\\sqrt{2}}{4}",
             "-\\frac{1}{4}",
             "\\frac{1}{4}",
-            "\\frac{\sqrt{2}}{4}"
+            "\\frac{\\sqrt{2}}{4}"
         ],
         "answer": 2,
         "score": 3
