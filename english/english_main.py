@@ -84,8 +84,7 @@ def main():
 
     _id = 0   # question_id를 확인하기 위한 변수
 
-    def get_answer(problem):
-        _id += 1
+    def get_answer(problem, _id):
         prompt_func = get_prompt_by_type(int(problem["type"]))
         answer = None
         
@@ -117,7 +116,8 @@ def main():
                 paragraph = problem["paragraph"]
                 for prob in problem["problems"]:
                     prob["question"] = paragraph + prob["question"]
-                    answer = get_answer(prob)
+                    _id+=1
+                    answer = get_answer(prob, _id)
 
                     # answer file에 문제, 정답, 배점, GPT의 풀이를 입력
                     fw.write(f"""{_id}번 문제: {prob['question'].replace(paragraph, "")}
@@ -127,7 +127,8 @@ def main():
                             ----------------------\n""")
                     fw.flush()   # buffer에 쌓인 메모리를 비워주는 함수. 보다 효율적으로 사용하기 위해 필요
             else:
-                answer = get_answer(problem)
+                _id+=1
+                answer = get_answer(problem, _id)
 
                 # answer file에 문제, 정답, 배점, GPT의 풀이를 입력
                 fw.write(f"""{_id}번 문제: {problem['question']}
