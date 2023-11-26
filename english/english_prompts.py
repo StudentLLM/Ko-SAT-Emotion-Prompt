@@ -49,12 +49,15 @@ def basic_prompt(model, question, choices, question_plus=""):
     우리의 EmotionPrompt는 System Prompt로 주는 것 같은데 이거는 얘기해봐야 할 듯 (system, question 뒤에 두가지 만들어보기로 함)
     """
 
+    # for test
+    return system_prompt + user_prompt
+    
     # ChatGPT, GPT-4 API generation
-    completion = openai.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ]
-    )
-    return completion.choices[0].message.content
+    # completion = openai.chat.completions.create(
+    #     model=model,
+    #     messages=[
+    #         {"role": "system", "content": system_prompt},
+    #         {"role": "user", "content": user_prompt}
+    #     ]
+    # )
+    # return completion.choices[0].message.content
