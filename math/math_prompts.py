@@ -63,7 +63,7 @@ def basic_prompt(model, question, choices, question_plus=""):
     )
     return completion.choices[0].message.content
 
-def no_choice_prompt(model, paragraph, question, question_plus=""):
+def no_choice_prompt(model, question, choices, question_plus=""):
     system_prompt = """
         당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오.
 
