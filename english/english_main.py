@@ -115,7 +115,7 @@ def main():
             if "paragraph" in list(problem.keys()):
                 paragraph = problem["paragraph"]
                 for prob in problem["problems"]:
-                    prob["question"] = paragraph + prob["question"]
+                    prob["question"] = paragraph + "\n\n" + prob["question"]
                     _id+=1
                     answer = get_answer(prob, _id)
 
