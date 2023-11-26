@@ -22,7 +22,7 @@ def arg_parse():
 
     parser.add_argument("--test_file", type=str, help="test file path")
     parser.add_argument("--save_path", type=str, help="save path")
-    parser.add_argument("--hf_token", type=str, help=f"select openAI model to use: {OPENAI_MODELS}")
+    parser.add_argument("--model", type=str, help=f"select openAI model to use: {OPENAI_MODELS}")
 
     return parser.parse_args()
 
