@@ -93,7 +93,7 @@
         "type": 0,
         "question_id": "7",
         "question": "함수 f(x)=\\frac{1}{3}x^3-2x^2-12x+4가 x=\\alpha에서 극대이고 x=\\beta에서 극소일 때, \\beta-\\alpha의 값은?",
-        "question_plus": "단, \alpha와 \beta는 상수이다.",
+        "question_plus": "단, \\alpha와 \\beta는 상수이다.",
         "choices": [
             "-4",
             "-1",
