@@ -47,33 +47,6 @@ def set_openai_key():
     if not openai.api_key:
         raise ValueError("OPENAI API KEY empty!")
 
-# 한 문제에 대한 model의 answer 추출 함수
-def get_answer_one_problem(data, model: str, paragraph_num: int, problem_num: int, prompt_func: callable = basic_prompt):
-    # paragraph_num: 지문 index / problem_num: 각 지문에 속한 problem index
-    problem = data[paragraph_num]["problems"][problem_num]
-    no_paragraph = False
-
-    # 만약 problem dictionary이 key 값에 'no_paragraph'가 있다면 no_paragraph = True
-    # 근데 Ctrl + F로 찾아보니 그런 값은 없던데 머쓱
-    if "no_paragraph" in list(problem.keys()):
-        no_paragraph = True
-
-    # question_plus가 있다면 따로 question_plus_text 변수에 넣어둠
-    if "question_plus" in list(problem.keys()):
-        question_plus_text = problem["question_plus"]
-    else:
-        question_plus_text = ""
-
-    # prompt_func에 모든 값을 넣음. 여기서 prompt_func는 
-    return prompt_func(
-        model=model,
-        paragraph=data[paragraph_num]["paragraph"],
-        question=problem["question"],
-        choices=problem["choices"],
-        question_plus=question_plus_text,
-        no_paragraph=no_paragraph
-    )
-
 def get_prompt_by_type(type_num: int) -> callable:
     # 0 : 4지선다, 1 : 단답형
     if type_num == 0:
@@ -102,20 +75,21 @@ def main(test_file, save_path, model):
 
     _id = 0   # question_id를 확인하기 위한 변수
     with open(save_path, "w", encoding="UTF-8") as fw:
-        prompt_func = get_prompt_by_type(int(paragraph["type"]))
 
         for problem_index, problem in tqdm(enumerate(test), total=len(test)):
             _id += 1
-
-            # 만약 문제의 type이 살짝 다르다면 prompt_func를 다르게 설정
-            if "type" in list(problem.keys()):
-                prompt_func = get_prompt_by_type(int(problem["type"]))
+            prompt_func = get_prompt_by_type(int(problem["type"]))
             answer = None
 
             # 3번 정도 시도해보면서 모델이 답을 출력할 수 있도록 함.
             for i in range(3):
                 try:
-                    answer = get_answer_one_problem(test, model, paragraph_index, problem_index, prompt_func)
+                    answer = prompt_func(
+                        model=model,
+                        question=problem["question"],
+                        choices=problem["choices"],
+                        question_plus=problem["question_plus"],
+                    )
                     logging.info(answer)
                     break
                 except Exception as e:
