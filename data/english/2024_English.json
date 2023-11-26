@@ -345,11 +345,11 @@
         "score": "2"
     },
     {
-        "type": 0,
         "id": "2024_English_41-42",
         "paragraph": "One way to avoid contributing to overhyping a story would be to say nothing. However, that is not a realistic option for scientists who feel a strong sense of responsibility to inform the public and policymakers and/or to offer suggestions. Speaking with members of the media has (a)[advantages] in getting a message out and perhaps receiving favorable recognition, but it runs the risk of misinterpretations, the need for repeated clarifications, and entanglement in never-ending controversy. Hence, the decision of whether to speak with the media tends to be highly individualized. Decades ago, it was (b)[unusual] for Earth scientists to have results that were of interest to the media, and consequently few media contacts were expected or encouraged. In the 1970s, the few scientists who spoke frequently with the media were often (c)[criticized] by their fellow scientists for having done so. The situation now is quite different, as many scientists feel a responsibility to speak out because of the importance of global warming and related issues, and many reporters share these feelings. In addition, many scientists are finding that they (d)[enjoy] the media attention and the public recognition that comes with it. At the same time, other scientists continue to resist speaking with reporters, thereby preserving more time for their science and (e)[running] the risk of being misquoted and the other unpleasantries associated with media coverage.",
         "problems": [
             {
+                "type": 0,
                 "question_id": "41",
                 "question": "윗글의 제목으로 가장 적절한 것은?",
                 "question_plus": "",
@@ -364,6 +364,7 @@
                 "score": 2
             },
             {
+                "type": 0,
                 "question_id": "42",
                 "question": "대괄호 친 (a)~(e) 중에서 문맥상 낱말의 쓰임이 적절하지 않은 것은?",
                 "question_plus": "",
@@ -380,11 +381,11 @@
         ]
     },
     {
-        "type": 0,
         "id": "2024_English_43-45",
         "paragraph": "(A) Emma and Clara stood side by side on the beach road, with their eyes fixed on the boundless ocean. The breathtaking scene that surrounded them was beyond description. Just after sunrise, they finished their preparations for the bicycle ride along the beach road. Emma turned to Clara with a question, “Do you think this will be your favorite ride ever?” Clara’s face lit up with a bright smile as she nodded. “Definitely! (a)[I] can’t wait to ride while watching those beautiful waves!\n(B) When they reached their destination, Emma and Clara stopped their bikes. Emma approached Clara, saying “Bicycle riding is unlike swimming, isn’t it?” Clara answered with a smile, “Quite similar, actually. Just like swimming, riding makes me feel truly alive.” She added, “It shows (b)[me] what it means to live while facing life’s tough challenges.” Emma nodded in agreement and suggested, “Your first beach bike ride was a great success. How about coming back next summer?” Clara replied with delight, “With (c)[you], absolutely!”\n(C) Clara used to be a talented swimmer, but she had to give up her dream of becoming an Olympic medalist in swimming because of shoulder injuries. Yet she responded to the hardship in a constructive way. After years of hard training, she made an incredible recovery and found a new passion for bike riding. Emma saw how the painful past made her maturer and how it made (d)[her] stronger in the end. One hour later, Clara, riding ahead of Emma, turned back and shouted, “Look at the white cliff!”\n (D) Emma and Clara jumped on their bikes and started to pedal toward the white cliff where the beach road ended. Speeding up and enjoying the wide blue sea, Emma couldn’t hide her excitement and exclaimed, “Clara, the view is amazing!” Clara’s silence, however, seemed to say that she was lost in her thoughts. Emma understood the meaning of her silence. Watching Clara riding beside her, Emma thought about Clara’s past tragedy, which (e)[she] now seemed to have overcome.",
         "problems": [
             {
+                "type": 0,
                 "question_id": "43",
                 "question": "주어진 글 (A)에 이어질 내용을 순서에 알맞게 배열한 것으로 가장 적절한 것은?",
                 "question_plus": "",
@@ -399,6 +400,7 @@
                 "score": "2"
             },
             {
+                "type": 0,
                 "question_id": "44",
                 "question": "대괄호 친 (a)~(e) 중에서 가리키는 대상이 나머지 넷과 다른 것은?",
                 "question_plus": "",
@@ -413,6 +415,7 @@
                 "score": "2"
             },
             {
+                "type": 0,
                 "question_id": "45",
                 "question": "윗글에 관한 내용으로 적절하지 않은 것은?",
                 "question_plus": "",
