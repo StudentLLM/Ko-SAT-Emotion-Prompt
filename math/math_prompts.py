@@ -2,13 +2,10 @@ import openai
 
 
 def basic_prompt(model, question, choices, question_plus=""):
-    # 여기에 Emotion Prompt를 적용하면 될 것 같음.
-    # 예를 들어서 뭐 너는 서울대를 가려고 하는 학생이야! 너는 열심히 공부했고 문제를 잘 풀어낼 수 있을 거야. 그리고 틀리지 않았는지 한 번 검토해보는 것도 잊지 말고!
-    # 이런 느낌?? 몰라 나도 잘
     system_prompt = """
         당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오.
 
-        문제를 풀이할 때, 반드시 지문을 참고하세요.
+         문제를 풀이할 때, 반드시 지문을 참고하세요.
          문제는 무조건 1개의 정답만 있습니다.
          문제를 풀이할 때 모든 선택지들을 검토하세요.
          모든 선택지마다 근거를 지문에서 찾아 설명하세요.
@@ -46,13 +43,6 @@ def basic_prompt(model, question, choices, question_plus=""):
 
     """
 
-    """
-    질문의 구성 형식이
-    paragraph + question_plus + question + choices 인 것 같음.
-
-    우리의 EmotionPrompt는 System Prompt로 주는 것 같은데 이거는 얘기해봐야 할 듯 (system, question 뒤에 두가지 만들어보기로 함)
-    """
-
     # ChatGPT, GPT-4 API generation
     completion = openai.chat.completions.create(
         model=model,
@@ -65,7 +55,7 @@ def basic_prompt(model, question, choices, question_plus=""):
     )
     return completion.choices[0].message.content
 
-def no_choice_prompt(model, question, choices, question_plus=""):
+def no_choice_prompt(model, question, question_plus=""):
     system_prompt = """
         당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오.
 
@@ -81,7 +71,7 @@ def no_choice_prompt(model, question, choices, question_plus=""):
     if question_plus:
         user_prompt += f"""
             이 문제는 아래와 같이 [조건]이 주어져 있습니다. ~~
-            문제의 각 선택지들을 해결하기 위한 배경 지식을 설명해 주고 있는 것이 <조건>로써
+            문제의 각 선택지들을 해결하기 위한 배경 지식을 설명해 주고 있는 것이 <조건>으로써
             문제를 해결할 때, 반드시 <조건>의 내용을 이용해서 문제를 해결해야 합니다.
             [조건] :
             {question_plus}

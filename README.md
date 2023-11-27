@@ -2,6 +2,47 @@
 
 KoSAT high-score with EmotionPrompt!!! We can do it!!!
 
+## Usage
+
+### 1. OpenAI API Key Setup
+
+```python
+import os
+import subprocess
+
+# Set OpenAI API Key to environment variable
+os.environ["OPENAI_API_KEY"] = "Your OpenAI API key"
+```
+
+### 2. Model Inference
+
+**Korean**
+
+```
+python korean/korean_solve.py \
+    --test_file data/korean/2024_korean.json \
+    --save_path result/korean/ \
+    --model OPENAI_MODEL
+```
+
+**English**
+
+```
+python english/english_solve.py \
+    --test_file data/english/2024_English.json \
+    --save_path result/english/ \
+    --model OPENAI_MODEL
+```
+
+**Math**
+
+```
+python math/math_solve.py \
+    --test_file data/math/2024_math.json \
+    --save_path result/math/ \
+    --model OPENAI_MODEL
+```
+
 ## Citation
 
 - [KICE_slayer_AI_Korean](https://github.com/NomaDamas/KICE_slayer_AI_Korean/tree/master)

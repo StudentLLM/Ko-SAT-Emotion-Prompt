@@ -26,31 +26,29 @@ def arg_parse():
 
     return parser.parse_args()
 
-# file load code
+# file load function
 def load_test(filepath: str):
-    # check if file exists
     if not os.path.isfile(filepath):
         raise FileNotFoundError(f'File not found: {filepath}')
 
     with open(filepath, 'rb') as f:
         test = json.load(f)
-    # total score check function
+
     total_score_test(test)
     return test
 
-# total_score 계산 함수
+# total_score compute function
 def total_score_test(data):
     total_score = 0
-    # 데이터 파일의 각 지문에 따른 문제들 먼저 for문 돌림
+    
     for pa in data:
-        # 각 지문에 있는 problems만큼 for문을 돌려서 각 문제에 대한 score를 total_score에 더함
         for problem in pa["problems"]:
             total_score += problem["score"]
-    # total_score가 100이 아니라면 오류 발생
+
     assert (total_score == 100)
     print("test passed")
 
-# 환경변수에 저장되어 있는 OpenAI API KEY 등록 코드
+# OpenAI API Key Setup function
 def set_openai_key():
     load_dotenv()
     openai.api_key = os.environ["OPENAI_API_KEY"]
@@ -74,15 +72,13 @@ def main():
         raise ValueError("save path not set!")
     logging.basicConfig(filename=f"{save_path.split('.')[0]}_log.log", level=logging.INFO)
 
-    # OpenAI API KEY 설정
     set_openai_key()
     if model not in OPENAI_MODELS:
         raise ValueError(f"Unsupported openai model! Please select one of {OPENAI_MODELS}")
     
-    # test dataset 불러오기
     test = load_test(test_file)
 
-    _id = 0   # question_id를 확인하기 위한 변수
+    _id = 0
 
     def get_answer(problem, _id):
         prompt_func = get_prompt_by_type(int(problem["type"]))
@@ -101,7 +97,6 @@ def main():
             except Exception as e:
                 print(f"RETRY, Failed! id: {_id} exception: {str(e)}")
 
-        # 만약 모델이 답을 생성할 수 없다면 failed problem의 index 번호를 출력
         if not answer:
             print(f"RETRY FAILED id: {_id}")
 
@@ -111,7 +106,6 @@ def main():
         answer = None
         
         for problem_index, problem in tqdm(enumerate(test), total=len(test)):
-            # paragraph가 있는 문제의 경우
             if "paragraph" in list(problem.keys()):
                 paragraph = problem["paragraph"]
                 for prob in problem["problems"]:
@@ -125,18 +119,17 @@ def main():
                              배점: {prob['score']}
                              GPT 풀이: {answer}
                             ----------------------\n""")
-                    fw.flush()   # buffer에 쌓인 메모리를 비워주는 함수. 보다 효율적으로 사용하기 위해 필요
+                    fw.flush()
             else:
                 _id+=1
                 answer = get_answer(problem, _id)
 
-                # answer file에 문제, 정답, 배점, GPT의 풀이를 입력
                 fw.write(f"""{_id}번 문제: {problem['question']}
                          정답: {problem['answer']}
                          배점: {problem['score']}
                          GPT 풀이: {answer}
                         ----------------------\n""")
-                fw.flush()   # buffer에 쌓인 메모리를 비워주는 함수. 보다 효율적으로 사용하기 위해 필요
+                fw.flush()
 
 if __name__ == "__main__":
     main()
