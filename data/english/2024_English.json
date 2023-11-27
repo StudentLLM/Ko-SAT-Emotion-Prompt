@@ -105,7 +105,7 @@
         "score": 3
     },
     {
-        "type": 0,
+        "type": 1,
         "question_id": "25",
         "question": "다음 글에서 대괄호 친 부분과 통계와 일치하지 않는 것은?\n\n[통계]\nTitle: Percentages of Respondents Who Sometimes or Often Actively Avoided News in Five Countries in 2017, 2019, and 2022\n\nIreland\n2017: 30%\n2019: 32%\n2022: 41%\n\nGermany\n2017: 24%\n2019: 25%\n2022: 29%\n\nDenmark\n2017: 14%\n2019: 15%\n2022: 20%\n\nFinland\n2017: 18%\n2019: 17%\n2022: 20%\n\nJapan\n2017: 6%\n2019: 11%\n2022: 14%\n\n[글]\nThe above graph shows the percentages of the respondents in five countries who sometimes or often actively avoided news in 2017, 2019, and 2022. ①[For each of the three years, Ireland showed the highest percentage of the respondents who sometimes or often actively avoided news, among the countries in the graph.] ②[In Germany, the percentage of the respondents who sometimes or often actively avoided news was less than 30% in each of the three years.] ③[In Denmark, the percentage of the respondents who sometimes or often actively avoided news in 2019 was higher than that in 2017 but lower than that in 2022.] ④[In Finland, the percentage of the respondents who sometimes or often actively avoided news in 2019 was lower than that in 2017, which was also true for Japan.] ⑤[In Japan, the percentage of the respondents who sometimes or often actively avoided news did not exceed 15% in each of the three years.]",
         "question_plus": "",
@@ -135,7 +135,7 @@
         "score": 2
     },
     {
-        "type": 0,
+        "type": 1,
         "question_id": "27",
         "question": "Turtle Island Boat Tour에 관한 다음 안내문의 내용과 일치하지 않는 것은?\n\nTurtle Island Boat Tour\nThe fantastic Turtle Island Boat Tour invites you to the beautiful sea world.\nDates: From June 1 to August 31, 2024\nTour Times\nWeekdays: 1 p.m. - 5 p.m.\nWeekends: 9 a.m. - 1 p.m., 1 p.m. - 5 p.m.\nEach tour lasts four hours\nTickets & Booking\n- $50 per person for each tour (Only those aged 17 and over can participate)\n- Bookings must be completed no later than 2 days before the day of the tour.\n- No refunds after the departure time\n- Each tour group size is limited to 10 participants.\nActivities\n- Snorkeling with a professional diver\n- Feeding tropical fish",
         "question_plus": "",
@@ -150,7 +150,7 @@
         "score": 2
     },
     {
-        "type": 0,
+        "type": 1,
         "question_id": "28",
         "question": "2023 Eastland High School Video Clip Contest에 관한 다음 안내문의 내용과 일치하는 것은?\n\n2023 Eastland High School VIdeo Clip Contest\nShoot and share your most memorable moments with your teachers and friends!\nGuidelines\n-Theme: 'Joyful Moments' in our Growing Community\n-Submissions will be accepted from December 1 to December 14.\n-Submissions should be uploaded to our school website.\n--Video length cannot exceed three minutes.\n--Entries are limited to one per student.\nPrizes\n-1st place: $100 gift card, 2nd place: $50 gift card\n-Winning videos will be posted to our school’s app.\n-The prize winners will be chosen by the school art teachers.\n※For more information, visit the school website.",
         "question_plus": "",
@@ -270,7 +270,7 @@
         "score": 2
     },
     {
-        "type": 0,
+        "type": 2,
         "question_id": "36",
         "question": "주어진 글 다음에 이어질 글의 순서로 가장 적절한 것을 고르시오.\n\nNegotiation can be defined as an attempt to explore and reconcile conflicting positions in order to reach an acceptable outcome.\n(A) Areas of difference can and do frequently remain, and will perhaps be the subject of future negotiations, or indeed remain irreconcilable. In those instances in which the parties have highly antagonistic or polarised relations, the process is likely to be dominated by the exposition, very often in public, of the areas of conflict.\n(B) In these and sometimes other forms of negotiation, negotiation serves functions other than reconciling conflicting interests. These will include delay, publicity, diverting attention or seeking intelligence about the other party and its negotiating position.\n(C) Whatever the nature of the outcome, which may actually favour one party more than another, the purpose of negotiation is the identification of areas of common interest and conflict. In this sense, depending on the intentions of the parties, the areas of common interest may be clarified, refined and given negotiated form and substance.",
         "question_plus": "",
@@ -285,7 +285,7 @@
         "score": 2
     },
     {
-        "type": 0,
+        "type": 2,
         "question_id": "37",
         "question": "주어진 글 다음에 이어질 글의 순서로 가장 적절한 것을 고르시오.\n\nNorms emerge in groups as a result of people conforming to the behavior of others. Thus, the start of a norm occurs when one person acts in a particular manner in a particular situation because she thinks she ought to.\n(A) Thus, she may prescribe the behavior to them by uttering the norm statement in a prescriptive manner. Alternately, she may communicate that conformity is desired in other ways, such as by gesturing. In addition, she may threaten to sanction them for not behaving as she wishes. This will cause some to conform to her wishes and act as she acts.\n(B) But some others will not need to have the behavior prescribed to them. They will observe the regularity of behavior and decide on their own that they ought to conform. They may do so for either rational or moral reasons.\n(C) Others may then conform to this behavior for a number of reasons. The person who performed the initial action may think that others ought to behave as she behaves in situations of this sort.",
         "question_plus": "",
@@ -385,7 +385,7 @@
         "paragraph": "(A) Emma and Clara stood side by side on the beach road, with their eyes fixed on the boundless ocean. The breathtaking scene that surrounded them was beyond description. Just after sunrise, they finished their preparations for the bicycle ride along the beach road. Emma turned to Clara with a question, “Do you think this will be your favorite ride ever?” Clara’s face lit up with a bright smile as she nodded. “Definitely! (a)[I] can’t wait to ride while watching those beautiful waves!\n(B) When they reached their destination, Emma and Clara stopped their bikes. Emma approached Clara, saying “Bicycle riding is unlike swimming, isn’t it?” Clara answered with a smile, “Quite similar, actually. Just like swimming, riding makes me feel truly alive.” She added, “It shows (b)[me] what it means to live while facing life’s tough challenges.” Emma nodded in agreement and suggested, “Your first beach bike ride was a great success. How about coming back next summer?” Clara replied with delight, “With (c)[you], absolutely!”\n(C) Clara used to be a talented swimmer, but she had to give up her dream of becoming an Olympic medalist in swimming because of shoulder injuries. Yet she responded to the hardship in a constructive way. After years of hard training, she made an incredible recovery and found a new passion for bike riding. Emma saw how the painful past made her maturer and how it made (d)[her] stronger in the end. One hour later, Clara, riding ahead of Emma, turned back and shouted, “Look at the white cliff!”\n (D) Emma and Clara jumped on their bikes and started to pedal toward the white cliff where the beach road ended. Speeding up and enjoying the wide blue sea, Emma couldn’t hide her excitement and exclaimed, “Clara, the view is amazing!” Clara’s silence, however, seemed to say that she was lost in her thoughts. Emma understood the meaning of her silence. Watching Clara riding beside her, Emma thought about Clara’s past tragedy, which (e)[she] now seemed to have overcome.",
         "problems": [
             {
-                "type": 0,
+                "type": 2,
                 "question_id": "43",
                 "question": "주어진 글 (A)에 이어질 내용을 순서에 알맞게 배열한 것으로 가장 적절한 것은?",
                 "question_plus": "",

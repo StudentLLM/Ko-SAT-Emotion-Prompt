@@ -48,7 +48,6 @@ def total_score_test(data):
 
 
 def set_openai_key():
-    load_dotenv()
     openai.api_key = os.environ["OPENAI_API_KEY"]
     if not openai.api_key:
         raise ValueError("OPENAI API KEY empty!")

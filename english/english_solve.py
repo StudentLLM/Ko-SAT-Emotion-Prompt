@@ -4,7 +4,6 @@ import os
 
 import click
 import openai
-from dotenv import load_dotenv
 from tqdm import tqdm
 import argparse
 
@@ -50,7 +49,6 @@ def total_score_test(data):
 
 # OpenAI API Key Setup function
 def set_openai_key():
-    load_dotenv()
     openai.api_key = os.environ["OPENAI_API_KEY"]
     if not openai.api_key:
         raise ValueError("OPENAI API KEY empty!")
