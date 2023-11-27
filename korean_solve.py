@@ -7,7 +7,7 @@ import openai
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-from prompts import basic_prompt, literature_prompt, grammar_prompt
+from korean_prompts import basic_prompt, literature_prompt, grammar_prompt
 
 OPENAI_MODELS = [
     "gpt-4-1106-preview",
