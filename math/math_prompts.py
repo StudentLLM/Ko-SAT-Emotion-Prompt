@@ -30,6 +30,7 @@ def basic_prompt(model, question, choices, question_plus=""):
             [조건] :
             {question_plus}
         """
+        
     user_prompt += f"""
         질문 :
         {question}

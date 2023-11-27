@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from tqdm import tqdm
 import argparse
 
-from english_prompts import basic_prompt
+from english_prompts import basic_prompt, data_prompt, ordering_prompt
 
 OPENAI_MODELS = [
     "gpt-4-1106-preview",
@@ -56,9 +56,13 @@ def set_openai_key():
         raise ValueError("OPENAI API KEY empty!")
 
 def get_prompt_by_type(type_num: int) -> callable:
-    # 0 : ALL
+    # 0 : basic, 1 : data, 2 : ordering
     if type_num == 0:
         return basic_prompt
+    elif type_num == 1:
+        return data_prompt
+    else:
+        return ordering_prompt
 
 def main():
     args = arg_parse()
