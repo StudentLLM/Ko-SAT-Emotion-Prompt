@@ -87,7 +87,7 @@ def main():
 
     _id = 0
 
-    def get_answer(problem, _id, is_front, ep, fw):
+    def get_answer(problem, _id, is_front, ep):
         prompt_func = get_prompt_by_type(int(problem["type"]))
         answer = None
         
