@@ -62,7 +62,7 @@ def basic_prompt(model, question, choices, question_plus="", is_front=False, emo
     )
     return completion.choices[0].message.content
 
-def no_choice_prompt(model, question, choices, question_plus="", is_front=False, emotion_prompt=""):
+def no_choice_prompt(model, question, question_plus="", is_front=False, emotion_prompt=""):
     system_prompt = "당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오. "
     system_prompt += emotion_prompt if is_front else ""
     

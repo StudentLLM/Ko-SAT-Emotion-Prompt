@@ -55,7 +55,7 @@ def set_openai_key():
         raise ValueError("OPENAI API KEY empty!")
 
 
-def get_answer_one_problem(data, model: str, paragraph_num: int, problem_num: int, prompt_func: callable = basic_prompt, is_front, ep):
+def get_answer_one_problem(data, model: str, paragraph_num: int, problem_num: int, prompt_func: callable = basic_prompt, is_front=False, ep=""):
     problem = data[paragraph_num]["problems"][problem_num]
     no_paragraph = False
     if "no_paragraph" in list(problem.keys()):

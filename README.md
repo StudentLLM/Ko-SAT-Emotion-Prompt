@@ -4,7 +4,14 @@ KoSAT high-score with EmotionPrompt!!! We can do it!!!
 
 ## Usage
 
-### 1. OpenAI API Key Setup
+### 1. Environment Setup
+
+```
+cd Ko-SAT-Emotion-Prompt
+pip install -r reqruiements.txt
+```
+
+### 2. OpenAI API Key Setup
 
 ```python
 import os
@@ -14,15 +21,17 @@ import subprocess
 os.environ["OPENAI_API_KEY"] = "Your OpenAI API key"
 ```
 
-### 2. Model Inference
+### 3. Model Inference
 
 **Korean**
 
 ```
 python korean/korean_solve.py \
     --test_file data/korean/2024_korean.json \
-    --save_path result/korean/ \
-    --model OPENAI_MODEL
+    --emotion_prompt_path emotion_prompts.json \
+    --save_path result/2024_korean.txt \
+    --model OPENAI_MODEL \
+    --is_front False or True
 ```
 
 **English**
@@ -30,8 +39,10 @@ python korean/korean_solve.py \
 ```
 python english/english_solve.py \
     --test_file data/english/2024_English.json \
-    --save_path result/english/ \
-    --model OPENAI_MODEL
+    --emotion_prompt_path emotion_prompts.json \
+    --save_path result/2024_english.txt \
+    --model OPENAI_MODEL \
+    --is_front False or True
 ```
 
 **Math**
@@ -39,8 +50,10 @@ python english/english_solve.py \
 ```
 python math/math_solve.py \
     --test_file data/math/2024_math.json \
-    --save_path result/math/ \
-    --model OPENAI_MODEL
+    --emotion_prompt_path emotion_prompts.json \
+    --save_path result/2024_math.txt \
+    --model OPENAI_MODEL \
+    --is_front False or True
 ```
 
 ## Citation

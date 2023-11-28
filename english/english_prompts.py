@@ -1,6 +1,6 @@
 import openai
 
-def basic_prompt(model, question, choices, question_plus="", is_front, emotion_prompt):
+def basic_prompt(model, question, choices, is_front, emotion_prompt, question_plus=""):
     system_prompt = "당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오. "
     system_prompt += emotion_prompt if is_front else ""
     
@@ -61,7 +61,7 @@ def basic_prompt(model, question, choices, question_plus="", is_front, emotion_p
 
     return completion.choices[0].message.content
 
-def data_prompt(model, question, choices, question_plus="", is_front, emotion_prompt):
+def data_prompt(model, question, choices, is_front, emotion_prompt, question_plus=""):
     system_prompt = "당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오. "
     system_prompt += emotion_prompt if is_front else ""
     
@@ -122,7 +122,7 @@ def data_prompt(model, question, choices, question_plus="", is_front, emotion_pr
     
     return completion.choices[0].message.content
 
-def ordering_prompt(model, question, choices, question_plus="", is_front, ep):
+def ordering_prompt(model, question, choices, is_front, emotion_prompt, question_plus=""):
     system_prompt = "당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오. "
     system_prompt += emotion_prompt if is_front else ""
     
