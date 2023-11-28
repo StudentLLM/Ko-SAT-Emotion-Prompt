@@ -110,7 +110,7 @@ def main(test_file, save_path, model):
 
     _id = 0
     for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
-        with open(save_path, "w", encoding="UTF-8") as fw:
+        with open(save_path + "_" + str(ep_index), "w", encoding="UTF-8") as fw:
             for paragraph_index, paragraph in enumerate(test):
                 prompt_func = get_prompt_by_type(int(paragraph["type"]))
                 for problem_index, problem in tqdm(enumerate(paragraph["problems"]), total=len(paragraph["problems"])):
