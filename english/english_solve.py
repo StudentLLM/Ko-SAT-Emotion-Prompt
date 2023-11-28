@@ -121,7 +121,7 @@ def main():
         return answer
 
     for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
-        with open(save_path, "w", encoding="UTF-8") as fw:
+        with open(save_path + "_" + str(ep_index), "w", encoding="UTF-8") as fw:
             answer = None
             for problem_index, problem in tqdm(enumerate(test), total=len(test)):
                 if "paragraph" in list(problem.keys()):
