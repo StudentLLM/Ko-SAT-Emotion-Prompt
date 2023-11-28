@@ -86,8 +86,8 @@ def main():
 
     _id = 0
 
-    with open(save_path, "w", encoding="UTF-8") as fw:
-        for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
+    for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
+        with open(save_path + "_" + str(ep_index), "w", encoding="UTF-8") as fw:
             for problem_index, problem in tqdm(enumerate(test), total=len(test)):
                 _id += 1
                 prompt_func = get_prompt_by_type(int(problem["type"]))
