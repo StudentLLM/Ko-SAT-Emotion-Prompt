@@ -87,7 +87,7 @@ def main():
 
     _id = 0
 
-    def get_answer(problem, _id, is_front, ep):
+    def get_answer(problem, _id, is_front, ep, fw, paragraph=""):
         prompt_func = get_prompt_by_type(int(problem["type"]))
         answer = None
         
@@ -109,6 +109,15 @@ def main():
         if not answer:
             print(f"RETRY FAILED id: {_id}")
 
+        # answer file에 문제, 정답, 배점, GPT의 풀이를 입력
+        fw.write(f"""{_id}번 문제: {problem['question'].replace(paragraph, "")}
+                 EmotionPrompt: {ep}
+                 정답: {problem['answer']}
+                 배점: {problem['score']}
+                 GPT 풀이: {answer}
+                ----------------------\n""")
+        fw.flush()
+
         return answer
 
     for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
@@ -120,27 +129,10 @@ def main():
                     for prob in problem["problems"]:
                         prob["question"] = paragraph + "\n\n" + prob["question"]
                         _id += 1
-                        answer = get_answer(prob, _id, is_front, ep)
-    
-                        # answer file에 문제, 정답, 배점, GPT의 풀이를 입력
-                        fw.write(f"""{_id}번 문제: {prob['question'].replace(paragraph, "")}
-                                 EmotionPrompt: {ep}
-                                 정답: {prob['answer']}
-                                 배점: {prob['score']}
-                                 GPT 풀이: {answer}
-                                ----------------------\n""")
-                        fw.flush()
+                        answer = get_answer(prob, _id, is_front, ep, fw, paragraph)
                 else:
                     _id += 1
-                    answer = get_answer(prob, _id, is_front, ep)
-    
-                    fw.write(f"""{_id}번 문제: {problem['question']}
-                             EmotionPrompt: {ep}
-                             정답: {problem['answer']}
-                             배점: {problem['score']}
-                             GPT 풀이: {answer}
-                            ----------------------\n""")
-                    fw.flush()
+                    answer = get_answer(prob, _id, is_front, ep, fw, "")
 
 if __name__ == "__main__":
     main()
