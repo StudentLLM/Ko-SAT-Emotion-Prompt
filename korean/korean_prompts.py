@@ -1,4 +1,4 @@
-import openai
+onimport openai
 
 def basic_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front, ep):
     system_prompt = """
@@ -103,7 +103,7 @@ def talk_prompt(model, paragraph, question, choices, question_plus="", no_paragr
     return completion.choices[0].message.content
 
 
-def literature_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front, ep):
+def literature_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front, emotion_prompt):
     system_prompt = "국어 시험 문제를 푸는 대한민국의 고3 수험생으로서 위의 요약을 바탕으로 다음 문제의 답을 구하세요. "
     system_prompt += emotion_prompt if is_front else ""
     system_prompt = """
@@ -168,7 +168,7 @@ def literature_prompt(model, paragraph, question, choices, question_plus="", no_
     return completion.choices[0].message.content
 
 
-def grammar_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front, ep):
+def grammar_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front, emotion_prompt):
     system_prompt = "당신은 국어 시험 문제를 푸는 대한민국의 고3 수험생으로서 최종 정답을 고르시오. "
     system_prompt += emotion_prompt if is_front else ""
     system_prompt = """
