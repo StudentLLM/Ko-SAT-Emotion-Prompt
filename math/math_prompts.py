@@ -1,10 +1,13 @@
 import openai
 
 
-def basic_prompt(model, question, choices, question_plus=""):
-    system_prompt = """
-        당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오.
+def basic_prompt(model, question, choices, question_plus="", is_front=False, emotion_prompt=""):
+    system_prompt = "당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오."
 
+    if is_front:
+        system_prompt += emotion_prompt
+    
+    system_prompt += """
          문제를 풀이할 때, 반드시 지문을 참고하세요.
          문제는 무조건 1개의 정답만 있습니다.
          문제를 풀이할 때 모든 선택지들을 검토하세요.
@@ -34,6 +37,12 @@ def basic_prompt(model, question, choices, question_plus=""):
     user_prompt += f"""
         질문 :
         {question}
+    """
+
+    if not is_front:
+        user_prompt += emotion_prompt
+
+    user_prompt += f"""
 
         선택지 :
         1번 - {choices[0]}
@@ -56,11 +65,13 @@ def basic_prompt(model, question, choices, question_plus=""):
     )
     return completion.choices[0].message.content
 
-def no_choice_prompt(model, question, question_plus=""):
-    system_prompt = """
-        당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오.
+def no_choice_prompt(model, question, choices, question_plus="", is_front=False, emotion_prompt=""):
+    system_prompt = "당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오."
 
-        ~~~
+    if is_front:
+        system_prompt += emotion_prompt
+    
+    system_prompt += """
          다음의 형식을 따라 답변하세요.
 
          풀이: (자세한 풀이))
@@ -82,6 +93,9 @@ def no_choice_prompt(model, question, question_plus=""):
         질문 :
         {question}
     """
+
+    if not is_front:
+        user_prompt += emotion_prompt
 
     # ChatGPT, GPT-4 API generation
     completion = openai.chat.completions.create(
