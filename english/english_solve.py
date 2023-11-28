@@ -24,6 +24,8 @@ def arg_parse():
     parser.add_argument("--save_path", type=str, help="save path")
     parser.add_argument("--model", type=str, help=f"select openAI model to use: {OPENAI_MODELS}")
     parser.add_argument("--is_front", type=bool, help="If it's true, prompt will be appended after the system message, and if it's false, it will be appended after the question.")
+    parser.add_argument("--cot_apply", type=bool, default=False)
+    parser.add_argument("--cot_message", type=str, default="한 단계씩 차근차근 생각해보세요.")
 
     return parser.parse_args()
 
@@ -121,6 +123,8 @@ def main():
         return answer
 
     for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
+        ep1 = copy.copy(ep)
+        ep1 += args.cot_message if args.cot_apply else ""
         with open(save_path + "_" + str(ep_index), "w", encoding="UTF-8") as fw:
             answer = None
             for problem_index, problem in tqdm(enumerate(test), total=len(test)):
@@ -129,10 +133,10 @@ def main():
                     for prob in problem["problems"]:
                         prob["question"] = paragraph + "\n\n" + prob["question"]
                         _id += 1
-                        answer = get_answer(prob, _id, is_front, ep, fw, paragraph)
+                        answer = get_answer(prob, _id, is_front, ep1, fw, paragraph)
                 else:
                     _id += 1
-                    answer = get_answer(prob, _id, is_front, ep, fw, "")
+                    answer = get_answer(prob, _id, is_front, ep1, fw, "")
 
 if __name__ == "__main__":
     main()
