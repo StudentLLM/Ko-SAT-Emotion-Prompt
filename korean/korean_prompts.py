@@ -1,6 +1,6 @@
 import openai
 
-def basic_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False):
+def basic_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front, ep):
     system_prompt = """
         국어 시험 문제를 푸는 똑똑한 학생으로써 다음 문제의 답을 구하세요.
         지문을 읽고, 질문에 대한 답을 1부터 5까지의 선택지 중에 한 개만 골라서 대답해야 합니다.
@@ -45,7 +45,7 @@ def basic_prompt(model, paragraph, question, choices, question_plus="", no_parag
     return completion.choices[0].message.content
 
 
-def talk_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False):
+def talk_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front, ep):
     system_prompt = """
         국어 시험 문제를 푸는 대한민국의 고3 수험생으로서 위의 요약을 바탕으로 다음 문제의 답을 구하세요.
 
@@ -103,9 +103,10 @@ def talk_prompt(model, paragraph, question, choices, question_plus="", no_paragr
     return completion.choices[0].message.content
 
 
-def literature_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False):
+def literature_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front, ep):
+    system_prompt = "국어 시험 문제를 푸는 대한민국의 고3 수험생으로서 위의 요약을 바탕으로 다음 문제의 답을 구하세요. "
+    system_prompt += emotion_prompt if is_front else ""
     system_prompt = """
-        국어 시험 문제를 푸는 대한민국의 고3 수험생으로서 위의 요약을 바탕으로 다음 문제의 답을 구하세요.
 
          문제를 풀이할 때, 반드시 지문을 참고하세요.
          문제는 무조건 1개의 정답만 있습니다.
@@ -136,10 +137,14 @@ def literature_prompt(model, paragraph, question, choices, question_plus="", no_
             <보기> :
             {question_plus}
         """
-
+    
     user_prompt += f"""
         질문 :
         {question}
+    """
+    user_prompt += emotion_prompt if not is_front else ""
+
+    user_prompt += f"""
 
         선택지 :
         1번 - {choices[0]}
@@ -155,14 +160,18 @@ def literature_prompt(model, paragraph, question, choices, question_plus="", no_
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
-        ], top_p=0)
+        ], 
+        top_p=0.8,
+        frequency_penalty=0.5
+    )
     
     return completion.choices[0].message.content
 
 
-def grammar_prompt(model, paragraph, question, choices, question_plus="", get_prompt=False, no_paragraph=False):
+def grammar_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front, ep):
+    system_prompt = "당신은 국어 시험 문제를 푸는 대한민국의 고3 수험생으로서 최종 정답을 고르시오. "
+    system_prompt += emotion_prompt if is_front else ""
     system_prompt = """
-        당신은 국어 시험 문제를 푸는 대한민국의 고3 수험생으로서 최종 정답을 고르시오.
 
         '지문 속 목적어의 성격'과 '선택지 속 목적어의 성격'이 서로 같은 선택지를 1개만 고르세요.
         모두 같은 선택지는 무조건 1개만 존재합니다.
@@ -201,16 +210,22 @@ def grammar_prompt(model, paragraph, question, choices, question_plus="", get_pr
             <보기> :
             {question_plus}
         """
-
+        
     user_prompt += f"""
         질문 :
         {question}
+    """
+    user_prompt += emotion_prompt if not is_front else ""
+
+    user_prompt += f"""
+
         선택지 :
         1번 - {choices[0]}
         2번 - {choices[1]}
         3번 - {choices[2]}
         4번 - {choices[3]}
         5번 - {choices[4]}
+
     """
 
     if get_prompt:
@@ -221,6 +236,9 @@ def grammar_prompt(model, paragraph, question, choices, question_plus="", get_pr
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
-        ], top_p=0)
+        ], 
+        top_p=0.8,
+        frequency_penalty=0.5
+    )
     
     return completion.choices[0].message.content
