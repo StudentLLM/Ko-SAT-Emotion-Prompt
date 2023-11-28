@@ -1,9 +1,11 @@
 import openai
 
-def basic_prompt(model, question, choices, question_plus=""):
-    system_prompt = """
-        당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오.
-
+def basic_prompt(model, question, choices, question_plus="", is_front, ep):
+    system_prompt = "당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오. "
+    system_prompt += emotion_prompt if is_front else ""
+    
+    system_prompt += """
+    
          문제를 풀이할 때, 반드시 지문을 참고하세요.
          문제는 무조건 1개의 정답만 있습니다.
          문제를 풀이할 때 모든 선택지들을 검토하세요.
@@ -29,6 +31,10 @@ def basic_prompt(model, question, choices, question_plus=""):
     user_prompt += f"""
         질문 :
         {question}
+    """
+    user_prompt += emotion_prompt if not is_front else ""
+
+    user_prompt += f"""
 
         선택지 :
         1번 - {choices[0]}
@@ -55,11 +61,12 @@ def basic_prompt(model, question, choices, question_plus=""):
 
     return completion.choices[0].message.content
 
-def data_prompt(model, question, choices, question_plus=""):
-    system_prompt = """
-        당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오.
-
-         문제를 풀이할 때, 문제와 함께 주어진 자료를 반드시 참고하세요.
+def data_prompt(model, question, choices, question_plus="", is_front, ep):
+    system_prompt = "당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오. "
+    system_prompt += emotion_prompt if is_front else ""
+    
+    system_prompt += """
+    
          문제를 풀이할 때, 반드시 지문을 참고하세요.
          문제는 무조건 1개의 정답만 있습니다.
          문제를 풀이할 때 모든 선택지들을 검토하세요.
@@ -85,6 +92,10 @@ def data_prompt(model, question, choices, question_plus=""):
     user_prompt += f"""
         질문 :
         {question}
+    """
+    user_prompt += emotion_prompt if not is_front else ""
+
+    user_prompt += f"""
 
         선택지 :
         1번 - {choices[0]}
@@ -111,18 +122,19 @@ def data_prompt(model, question, choices, question_plus=""):
     
     return completion.choices[0].message.content
 
-def ordering_prompt(model, question, choices, question_plus=""):
-    system_prompt = """
-        당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오.
-
-         이 문제는 문장의 순서를 알맞게 배치하는 문제로 주어진 문장들이 순서대로 있는 것이 아니라 임의로 주어져 있습니다.
+def ordering_prompt(model, question, choices, question_plus="", is_front, ep):
+    system_prompt = "당신은 대학수학능력검정시험을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오. "
+    system_prompt += emotion_prompt if is_front else ""
+    
+    system_prompt += """
+    
          문제를 풀이할 때, 반드시 지문을 참고하세요.
          문제는 무조건 1개의 정답만 있습니다.
          문제를 풀이할 때 모든 선택지들을 검토하세요.
          모든 선택지마다 근거를 지문에서 찾아 설명하세요.
 
          다음의 형식을 따라 답변하세요.
-
+         
          1번: "(문장 순서에 대한 설명)" + (자세한 풀이) + (선택지 1번에 대한 답변)
          2번: "(문장 순서에 대한 설명)" + (자세한 풀이) + (선택지 2번에 대한 답변)
          3번: "(문장 순서에 대한 설명)" + (자세한 풀이) + (선택지 3번에 대한 답변)
@@ -141,6 +153,10 @@ def ordering_prompt(model, question, choices, question_plus=""):
     user_prompt += f"""
         질문 :
         {question}
+    """
+    user_prompt += emotion_prompt if not is_front else ""
+
+    user_prompt += f"""
 
         선택지 :
         1번 - {choices[0]}
