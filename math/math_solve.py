@@ -81,7 +81,7 @@ def main():
         raise ValueError(f"Unsupported openai model! Please select one of {OPENAI_MODELS}")
     
     test = load_test(test_file)
-    with open(filepath, 'rb') as f:
+    with open(args.emotion_prompt_path, 'rb') as f:
         emotion_prompts = json.load(f)
 
     _id = 0
