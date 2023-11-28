@@ -20,10 +20,12 @@ OPENAI_MODELS = [
 
 def arg_parse():
     parser = argparse.ArgumentParser()
-
-    parser.add_argument('--test_file', type=str, help='test file path')
-    parser.add_argument('--save_path', type=str, help='save path')
-    parser.add_argument('--model', type=str, help=f'select openAI model to use: {OPENAI_MODELS}')
+    
+    parser.add_argument("--test_file", type=str, help="test file path")
+    parser.add_argument("--emotion_prompt_path", type=str, help="emotion_prompts file path")
+    parser.add_argument("--save_path", type=str, help="save path")
+    parser.add_argument("--model", type=str, help=f"select openAI model to use: {OPENAI_MODELS}")
+    parser.add_argument("--is_front", type=bool, help="If it's true, prompt will be appended after the system message, and if it's false, it will be appended after the question.")
 
     return parser.parse_args()
 
@@ -53,7 +55,7 @@ def set_openai_key():
         raise ValueError("OPENAI API KEY empty!")
 
 
-def get_answer_one_problem(data, model: str, paragraph_num: int, problem_num: int, prompt_func: callable = basic_prompt):
+def get_answer_one_problem(data, model: str, paragraph_num: int, problem_num: int, prompt_func: callable = basic_prompt, is_front, ep):
     problem = data[paragraph_num]["problems"][problem_num]
     no_paragraph = False
     if "no_paragraph" in list(problem.keys()):
@@ -68,7 +70,9 @@ def get_answer_one_problem(data, model: str, paragraph_num: int, problem_num: in
         question=problem["question"],
         choices=problem["choices"],
         question_plus=question_plus_text,
-        no_paragraph=no_paragraph
+        no_paragraph=no_paragraph,
+        is_front=is_front,
+        emotion_prompt=ep
     )
 
 
@@ -88,6 +92,7 @@ def main(test_file, save_path, model):
     test_file = args.test_file
     save_path = args.save_path
     model = args.model
+    is_front = args.is_front
 
     if not test_file:
         raise ValueError("test file not set!")
@@ -98,33 +103,38 @@ def main(test_file, save_path, model):
     set_openai_key()
     if model not in OPENAI_MODELS:
         raise ValueError(f"Unsupported openai model! Please select one of {OPENAI_MODELS}")
+        
     test = load_test(test_file)
+    with open(args.emotion_prompt_path, 'rb') as f:
+        emotion_prompts = json.load(f)
 
     _id = 0
-    with open(save_path, "w", encoding="UTF-8") as fw:
-        for paragraph_index, paragraph in enumerate(test):
-            prompt_func = get_prompt_by_type(int(paragraph["type"]))
-            for problem_index, problem in tqdm(enumerate(paragraph["problems"]), total=len(paragraph["problems"])):
-                _id += 1
-                if "type" in list(problem.keys()):
-                    prompt_func = get_prompt_by_type(int(problem["type"]))
-                answer = None
-                for i in range(3):
-                    try:
-                        answer = get_answer_one_problem(test, model, paragraph_index, problem_index, prompt_func)
-                        logging.info(answer)
-                        break
-                    except Exception as e:
-                        print(f"RETRY, Failed! id: {_id} exception: {str(e)}")
-                if not answer:
-                    print(f"RETRY FAILED id: {_id}")
-                    continue
-                fw.write(f"""{_id}번 문제: {problem['question']}
-                        정답: {problem['answer']}
-                        배점: {problem['score']}
-                        GPT 풀이: {answer}
-                        ----------------------\n""")
-                fw.flush()
+    for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
+        with open(save_path, "w", encoding="UTF-8") as fw:
+            for paragraph_index, paragraph in enumerate(test):
+                prompt_func = get_prompt_by_type(int(paragraph["type"]))
+                for problem_index, problem in tqdm(enumerate(paragraph["problems"]), total=len(paragraph["problems"])):
+                    _id += 1
+                    if "type" in list(problem.keys()):
+                        prompt_func = get_prompt_by_type(int(problem["type"]))
+                    answer = None
+                    for i in range(3):
+                        try:
+                            answer = get_answer_one_problem(test, model, paragraph_index, problem_index, prompt_func, is_front, ep)
+                            logging.info(answer)
+                            break
+                        except Exception as e:
+                            print(f"RETRY, Failed! id: {_id} exception: {str(e)}")
+                    if not answer:
+                        print(f"RETRY FAILED id: {_id}")
+                        continue
+                    fw.write(f"""{_id}번 문제: {problem['question']}
+                            EmotionPrompt: {ep}
+                            정답: {problem['answer']}
+                            배점: {problem['score']}
+                            GPT 풀이: {answer}
+                            ----------------------\n""")
+                    fw.flush()
 
 
 if __name__ == "__main__":
