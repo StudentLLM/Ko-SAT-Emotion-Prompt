@@ -165,7 +165,7 @@
         "score": 2
     },
     {
-        "type": 0,
+        "type": 3,
         "question_id": "29",
         "question": "다음 글의 대괄호 친 부분 중, 어법상 틀린 것은?\n\nA number of studies provide substantial evidence of an innate human disposition to respond differentially to social stimuli. From birth, infants will orient preferentially towards the human face and voice, ①[seeming] to know that such stimuli are particularly meaningful for them. Moreover, they register this connection actively, imitating a variety of facial gestures that are presented to them ― tongue protrusions, lip tightenings, mouth openings. They will even try to match gestures ②[which] they have some difficulty, experimenting with their own faces until they succeed. When they ③[do] succeed, they show pleasure by a brightening of their eyes; when they fail, they show distress. In other words, they not only have an innate capacity for matching their own kinaesthetically experienced bodily movements with ④[those] of others that are visually perceived; they have an innate drive to do so. That is, they seem to have an innate drive to imitate others whom they judge ⑤[to be] 'like me'.",
         "question_plus": "",
@@ -180,7 +180,7 @@
         "score": 2
     },
     {
-        "type": 0,
+        "type": 3,
         "question_id": "30",
         "question": "다음 글의 대괄호 친 부분 중, 문맥상 낱말의 쓰임이 적절하지 않은 것은?\n\nBazaar economies feature an apparently flexible price-setting mechanism that sits atop more enduring ties of shared culture. Both the buyer and seller are aware of each other’s ①[restrictions]. In Delhi’s bazaars, buyers and sellers can ②[assess] to a large extent the financial constraints that other actors have in their everyday life. Each actor belonging to a specific economic class understands what the other sees as a necessity and a luxury. In the case of electronic products like video games, they are not a ③[necessity] at the same level as other household purchases such as food items. So, the seller in Delhi’s bazaars is careful not to directly ask for very ④[low] prices for video games because at no point will the buyer see possession of them as an absolute necessity. Access to this type of knowledge establishes a price consensus by relating to each other’s preferences and limitations of belonging to a ⑤[similar] cultural and economic universe.",
         "question_plus": "",
@@ -300,7 +300,7 @@
         "score": 3
     },
     {
-        "type": 0,
+        "type": 4,
         "question_id": "38",
         "question": "글의 흐름으로 보아, 주어진 문장이 들어가기에 가장 적절한 곳을 고르시오.\n\n[문장]\nYes, some contests are seen as world class, such as identification of the Higgs particle or the development of high temperature superconductors.\n\n[글]\nScience is sometimes described as a winner-take-all contest, meaning that there are no rewards for being second or third. This is an extreme view of the nature of scientific contests. ( ① ) Even those who describe scientific contests in such a way note that it is a somewhat inaccurate description, given that replication and verification have social value and are common in science. ( ② ) It is also inaccurate to the extent that it suggests that only a handful of contests exist. ( ③ ) But many other contests have multiple parts, and the number of such contests may be increasing. ( ④ ) By way of example, for many years it was thought that there would be “one” cure for cancer, but it is now realized that cancer takes multiple forms and that multiple approaches are needed to provide a cure. ( ⑤ ) There won’t be one winner ― there will be many.",
         "question_plus": "",
@@ -315,7 +315,7 @@
         "score": 2
     },
     {
-        "type": 0,
+        "type": 4,
         "question_id": "39",
         "question": "글의 흐름으로 보아, 주어진 문장이 들어가기에 가장 적절한 곳을 고르시오.\n\n[문장]\nAt the next step in the argument, however, the analogy breaks down.\n\n[글]\nMisprints in a book or in any written message usually have a negative impact on the content, sometimes (literally) fatally. ( ① ) The displacement of a comma, for instance, may be a matter of life and death. ( ② ) Similarly most mutations have harmful consequences for the organism in which they occur, meaning that they reduce its reproductive fitness. ( ③ ) Occasionally, however, a mutation may occur that increases the fitness of the organism, just as an accidental failure to reproduce the text of the first edition might provide more accurate or updated information. ( ④ ) A favorable mutation is going to be more heavily represented in the next generation, since the organism in which it occurred will have more offspring and mutations are transmitted to the offspring. ( ⑤ ) By contrast, there is no mechanism by which a book that accidentally corrects the mistakes of the first edition will tend to sell better",
         "question_plus": "",
@@ -330,7 +330,7 @@
         "score": 3
     },
     {
-        "type": 0,
+        "type": 3,
         "question_id": "40",
         "question": "다음 글의 내용을 한 문장으로 요약하고자 한다. 빈칸 (A), (B)에 들어갈 말로 가장 적절한 것은?\n\n[글]\nEven those with average talent can produce notable work in the various sciences, so long as they do not try to embrace all of them at once. Instead, they should concentrate attention on one subject after another (that is, in different periods of time), although later work will weaken earlier attainments in the other spheres. This amounts to saying that the brain adapts to universal science in time but not in space. In fact, even those with great abilities proceed in this way. Thus, when we are astonished by someone with publications in different scientific fields, realize that each topic was explored during a specific period of time. Knowledge gained earlier certainly will not have disappeared from the mind of the author, but it will have become simplified by condensing into formulas or greatly abbreviated symbols. Thus, sufficient space remains for the perception and learning of new images on the cerebral blackboard.\n\n[요약\nExploring one scientific subject after another (A) remarkable work across the sciences, as the previously gained knowledge is retained in simplified forms within the brain, which (B) room for new learning.",
         "question_plus": "",
@@ -364,7 +364,7 @@
                 "score": 2
             },
             {
-                "type": 0,
+                "type": 3,
                 "question_id": "42",
                 "question": "대괄호 친 (a)~(e) 중에서 문맥상 낱말의 쓰임이 적절하지 않은 것은?",
                 "question_plus": "",
