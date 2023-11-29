@@ -4,10 +4,10 @@ import os
 
 import click
 import openai
-from dotenv import load_dotenv
+import copy
 from tqdm import tqdm
 
-from korean_prompts import basic_prompt, literature_prompt, grammar_prompt
+from korean_prompts import literature_prompt, grammar_prompt
 
 import argparse
 
@@ -23,7 +23,7 @@ def arg_parse():
     
     parser.add_argument("--test_file", type=str, help="test file path")
     parser.add_argument("--emotion_prompt_path", type=str, help="emotion_prompts file path")
-    parser.add_argument("--save_path", type=str, help="save path")
+    parser.add_argument("--save_path", type=str, default="result/korean/2024_korean", help="save path")
     parser.add_argument("--model", type=str, help=f"select openAI model to use: {OPENAI_MODELS}")
     parser.add_argument("--is_front", type=bool, help="If it's true, prompt will be appended after the system message, and if it's false, it will be appended after the question.")
     parser.add_argument("--cot_apply", type=bool, default=False)
@@ -57,7 +57,7 @@ def set_openai_key():
         raise ValueError("OPENAI API KEY empty!")
 
 
-def get_answer_one_problem(data, model: str, paragraph_num: int, problem_num: int, prompt_func: callable = basic_prompt, is_front=False, ep=""):
+def get_answer_one_problem(data, model: str, paragraph_num: int, problem_num: int, prompt_func: callable, is_front=False, ep=""):
     problem = data[paragraph_num]["problems"][problem_num]
     no_paragraph = False
     if "no_paragraph" in list(problem.keys()):
@@ -80,11 +80,7 @@ def get_answer_one_problem(data, model: str, paragraph_num: int, problem_num: in
 
 def get_prompt_by_type(type_num: int) -> callable:
     # 0 : 비문학, 1 : 문학, 2 : 화법과 작문, 3 : 문법
-    if type_num == 0:
-        return literature_prompt
-    elif type_num == 1:
-        return literature_prompt
-    elif type_num == 2:
+    if type_num == 0 or type_num == 1 or type_num == 2:
         return literature_prompt
     else:
         return grammar_prompt
@@ -114,14 +110,16 @@ def main(test_file, save_path, model):
     for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
         ep1 = copy.copy(ep)
         ep1 += args.cot_message if args.cot_apply else ""
-        with open(save_path + "_" + str(ep_index), "w", encoding="UTF-8") as fw:
+        with open(save_path + "_ep" + str(ep_index) + ".txt", "w", encoding="UTF-8") as fw:
             for paragraph_index, paragraph in enumerate(test):
                 prompt_func = get_prompt_by_type(int(paragraph["type"]))
                 for problem_index, problem in tqdm(enumerate(paragraph["problems"]), total=len(paragraph["problems"])):
                     _id += 1
+
                     if "type" in list(problem.keys()):
                         prompt_func = get_prompt_by_type(int(problem["type"]))
                     answer = None
+
                     for i in range(3):
                         try:
                             answer = get_answer_one_problem(test, model, paragraph_index, problem_index, prompt_func, is_front, ep1)
@@ -129,9 +127,11 @@ def main(test_file, save_path, model):
                             break
                         except Exception as e:
                             print(f"RETRY, Failed! id: {_id} exception: {str(e)}")
+
                     if not answer:
                         print(f"RETRY FAILED id: {_id}")
                         continue
+
                     fw.write(f"""{_id}번 문제: {problem['question']}
                             EmotionPrompt: {ep1}
                             정답: {problem['answer']}

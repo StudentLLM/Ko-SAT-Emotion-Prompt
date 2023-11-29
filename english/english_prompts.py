@@ -43,9 +43,6 @@ def basic_prompt(model, question, choices, is_front, emotion_prompt, question_pl
         5번 - {choices[4]}
 
     """
-
-    # for test
-    # return system_prompt + user_prompt
     
     # ChatGPT, GPT-4 API generation
     completion = openai.chat.completions.create(
@@ -103,9 +100,6 @@ def data_prompt(model, question, choices, is_front, emotion_prompt, question_plu
         5번 - {choices[4]}
 
     """
-
-    # for test
-    # return system_prompt + user_prompt
     
     # ChatGPT, GPT-4 API generation
     completion = openai.chat.completions.create(
@@ -162,9 +156,6 @@ def ordering_prompt(model, question, choices, is_front, emotion_prompt, question
         5번 - {choices[4]}
 
     """
-
-    # for test
-    # return system_prompt + user_prompt
     
     # ChatGPT, GPT-4 API generation
     completion = openai.chat.completions.create(

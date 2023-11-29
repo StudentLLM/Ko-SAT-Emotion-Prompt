@@ -1,6 +1,6 @@
 import openai
 
-def literature_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front, emotion_prompt):
+def literature_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front=False, emotion_prompt=""):
     system_prompt = "대학수학능력능력검정시험 국어 영역을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오."
     system_prompt += emotion_prompt if is_front else ""
     system_prompt = """
@@ -65,7 +65,7 @@ def literature_prompt(model, paragraph, question, choices, question_plus="", no_
     return completion.choices[0].message.content
 
 
-def grammar_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front, emotion_prompt):
+def grammar_prompt(model, paragraph, question, choices, question_plus="", no_paragraph=False, is_front=False, emotion_prompt=""):
     system_prompt = "대학수학능력능력검정시험 국어 영역을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오."
     system_prompt += emotion_prompt if is_front else ""
     system_prompt = """
@@ -124,9 +124,6 @@ def grammar_prompt(model, paragraph, question, choices, question_plus="", no_par
         5번 - {choices[4]}
 
     """
-
-    if get_prompt:
-        return system_prompt +"\n\n" +user_prompt
     
     completion = openai.chat.completions.create(
         model=model,

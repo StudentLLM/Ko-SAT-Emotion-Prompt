@@ -4,7 +4,7 @@ import os
 
 import click
 import openai
-from dotenv import load_dotenv
+import copy
 from tqdm import tqdm
 import argparse
 
@@ -22,7 +22,7 @@ def arg_parse():
 
     parser.add_argument("--test_file", type=str, help="test file path")
     parser.add_argument("--emotion_prompt_path", type=str, help="emotion_prompts file path")
-    parser.add_argument("--save_path", type=str, help="save path")
+    parser.add_argument("--save_path", type=str, default="result/math/2024_math", help="save path")
     parser.add_argument("--model", type=str, help=f"select openAI model to use: {OPENAI_MODELS}")
     parser.add_argument("--is_front", type=bool, help="If it's true, prompt will be appended after the system message, and if it's false, it will be appended after the question.")
     parser.add_argument("--cot_apply", type=bool, default=False)
@@ -88,41 +88,44 @@ def main():
 
     _id = 0
 
+    def get_answer(problem, _id, is_front, ep, fw):
+        prompt_func = get_prompt_by_type(int(problem["type"]))
+        answer = None
+
+        for i in range(3):
+            try:
+                answer = prompt_func(
+                    model=model,
+                    question=problem["question"],
+                    choices=problem["choices"],
+                    question_plus=problem["question_plus"],
+                    is_front=is_front,
+                    emotion_prompt=ep
+                )
+                logging.info(answer)
+                break
+            except Exception as e:
+                print(f"RETRY, Failed! id: {_id} exception: {str(e)}")
+
+        if not answer:
+            print(f"RETRY FAILED id: {_id}")
+
+        fw.write(f"""{_id}번 문제: {problem['question']}
+                    EmotionPrompt: {ep1}
+                    정답: {problem['answer']}
+                    배점: {problem['score']}
+                    GPT 풀이: {answer}
+                ----------------------\n""")
+        fw.flush()
+
     for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
         ep1 = copy.copy(ep)
         ep1 += args.cot_message if args.cot_apply else ""
-        with open(save_path + "_" + str(ep_index), "w", encoding="UTF-8") as fw:
-            for problem_index, problem in tqdm(enumerate(test), total=len(test)):
+        with open(save_path + "_ep" + str(ep_index) + ".txt", "w", encoding="UTF-8") as fw:
+            for _, problem in tqdm(enumerate(test), total=len(test)):
                 _id += 1
-                prompt_func = get_prompt_by_type(int(problem["type"]))
-                answer = None
-    
-                for i in range(3):
-                    try:
-                        answer = prompt_func(
-                            model=model,
-                            question=problem["question"],
-                            choices=problem["choices"],
-                            question_plus=problem["question_plus"],
-                            is_front=is_front,
-                            emotion_prompt=ep1
-                        )
-                        logging.info(answer)
-                        break
-                    except Exception as e:
-                        print(f"RETRY, Failed! id: {_id} exception: {str(e)}")
-    
-                if not answer:
-                    print(f"RETRY FAILED id: {_id}")
-                    continue
-    
-                fw.write(f"""{_id}번 문제: {problem['question']}
-                         EmotionPrompt: {ep1}
-                         정답: {problem['answer']}
-                         배점: {problem['score']}
-                         GPT 풀이: {answer}
-                        ----------------------\n""")
-                fw.flush()
+                answer = get_answer(problem, _id, is_front, ep1, fw)
+                
 
 if __name__ == "__main__":
     main()

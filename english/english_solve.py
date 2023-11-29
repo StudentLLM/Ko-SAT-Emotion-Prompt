@@ -4,6 +4,7 @@ import os
 
 import click
 import openai
+import copy
 from tqdm import tqdm
 import argparse
 
@@ -21,7 +22,7 @@ def arg_parse():
 
     parser.add_argument("--test_file", type=str, help="test file path")
     parser.add_argument("--emotion_prompt_path", type=str, help="emotion_prompts file path")
-    parser.add_argument("--save_path", type=str, help="save path")
+    parser.add_argument("--save_path", type=str, default="result/english/2024_english", help="save path without file extension name")
     parser.add_argument("--model", type=str, help=f"select openAI model to use: {OPENAI_MODELS}")
     parser.add_argument("--is_front", type=bool, help="If it's true, prompt will be appended after the system message, and if it's false, it will be appended after the question.")
     parser.add_argument("--cot_apply", type=bool, default=False)
@@ -111,7 +112,6 @@ def main():
         if not answer:
             print(f"RETRY FAILED id: {_id}")
 
-        # answer file에 문제, 정답, 배점, GPT의 풀이를 입력
         fw.write(f"""{_id}번 문제: {problem['question'].replace(paragraph, "")}
                  EmotionPrompt: {ep}
                  정답: {problem['answer']}
@@ -122,12 +122,12 @@ def main():
 
         return answer
 
-    for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
+    for ep_index, ep in enumerate(emotion_prompts):
         ep1 = copy.copy(ep)
         ep1 += args.cot_message if args.cot_apply else ""
-        with open(save_path + "_" + str(ep_index), "w", encoding="UTF-8") as fw:
-            answer = None
-            for problem_index, problem in tqdm(enumerate(test), total=len(test)):
+
+        with open(save_path + "_ep" + str(ep_index) + ".txt", "w", encoding="UTF-8") as fw:
+            for _, problem in tqdm(enumerate(test), total=len(test)):
                 if "paragraph" in list(problem.keys()):
                     paragraph = problem["paragraph"]
                     for prob in problem["problems"]:
@@ -136,7 +136,7 @@ def main():
                         answer = get_answer(prob, _id, is_front, ep1, fw, paragraph)
                 else:
                     _id += 1
-                    answer = get_answer(prob, _id, is_front, ep1, fw, "")
+                    answer = get_answer(problem, _id, is_front, ep1, fw, "")
 
 if __name__ == "__main__":
     main()
