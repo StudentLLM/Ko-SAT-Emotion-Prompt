@@ -4,7 +4,7 @@ import os
 
 import click
 import openai
-import copy
+from dotenv import load_dotenv
 from tqdm import tqdm
 
 from korean_prompts import literature_prompt, grammar_prompt
@@ -26,8 +26,6 @@ def arg_parse():
     parser.add_argument("--save_path", type=str, default="result/korean/2024_korean", help="save path")
     parser.add_argument("--model", type=str, help=f"select openAI model to use: {OPENAI_MODELS}")
     parser.add_argument("--is_front", type=bool, help="If it's true, prompt will be appended after the system message, and if it's false, it will be appended after the question.")
-    parser.add_argument("--cot_apply", type=bool, default=False)
-    parser.add_argument("--cot_message", type=str, default="한 단계씩 차근차근 생각해보세요.")
 
     return parser.parse_args()
 
@@ -85,7 +83,7 @@ def get_prompt_by_type(type_num: int) -> callable:
     else:
         return grammar_prompt
 
-def main(test_file, save_path, model):
+def main():
     args = arg_parse()
     test_file = args.test_file
     save_path = args.save_path
@@ -110,7 +108,7 @@ def main(test_file, save_path, model):
     for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
         ep1 = copy.copy(ep)
         ep1 += args.cot_message if args.cot_apply else ""
-        with open(save_path + "_ep" + str(ep_index) + ".txt", "w", encoding="UTF-8") as fw:
+        with open(save_path + "_" + str(ep_index), "w", encoding="UTF-8") as fw:
             for paragraph_index, paragraph in enumerate(test):
                 prompt_func = get_prompt_by_type(int(paragraph["type"]))
                 for problem_index, problem in tqdm(enumerate(paragraph["problems"]), total=len(paragraph["problems"])):
@@ -122,7 +120,7 @@ def main(test_file, save_path, model):
 
                     for i in range(3):
                         try:
-                            answer = get_answer_one_problem(test, model, paragraph_index, problem_index, prompt_func, is_front, ep1)
+                            answer = get_answer_one_problem(test, model, paragraph_index, problem_index, prompt_func, is_front, ep)
                             logging.info(answer)
                             break
                         except Exception as e:
@@ -133,7 +131,7 @@ def main(test_file, save_path, model):
                         continue
 
                     fw.write(f"""{_id}번 문제: {problem['question']}
-                            EmotionPrompt: {ep1}
+                            EmotionPrompt: {ep}
                             정답: {problem['answer']}
                             배점: {problem['score']}
                             GPT 풀이: {answer}
