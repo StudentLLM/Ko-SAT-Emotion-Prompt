@@ -8,7 +8,7 @@ import copy
 from tqdm import tqdm
 import argparse
 
-from english_prompts import basic_prompt, data_prompt, ordering_prompt
+from english_prompts import basic_prompt, data_prompt, ordering_prompt, grammar_prompt, insert_prompt
 
 OPENAI_MODELS = [
     "gpt-4-1106-preview",
@@ -67,8 +67,12 @@ def get_prompt_by_type(type_num: int) -> callable:
         return basic_prompt
     elif type_num == 1:
         return data_prompt
-    else:
+    elif type_num == 2:
         return ordering_prompt
+    elif type_num == 3:
+        return grammar_prompt
+    else:
+        return insert_prompt
 
 def main():
     args = arg_parse()
