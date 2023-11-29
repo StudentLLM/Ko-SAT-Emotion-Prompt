@@ -4,6 +4,7 @@ import os
 
 import click
 import openai
+import copy
 from tqdm import tqdm
 
 from korean_prompts import literature_prompt, grammar_prompt
@@ -20,11 +21,13 @@ OPENAI_MODELS = [
 def arg_parse():
     parser = argparse.ArgumentParser()
     
-    parser.add_argument("--test_file", type=str, help="test file path")
-    parser.add_argument("--emotion_prompt_path", type=str, help="emotion_prompts file path")
+    parser.add_argument("--test_file", type=str, default="data/korean/2024_korean.json", help="test file path")
+    parser.add_argument("--emotion_prompt_path", type=str, default="emotion_prompt.json", help="emotion_prompts file path")
     parser.add_argument("--save_path", type=str, default="result/korean/2024_korean", help="save path")
     parser.add_argument("--model", type=str, help=f"select openAI model to use: {OPENAI_MODELS}")
     parser.add_argument("--is_front", type=bool, help="If it's true, prompt will be appended after the system message, and if it's false, it will be appended after the question.")
+    parser.add_argument("--cot_apply", type=bool, default=False)
+    parser.add_argument("--cot_message", type=str, default="한 단계씩 차근차근 생각해보세요.")
 
     return parser.parse_args()
 

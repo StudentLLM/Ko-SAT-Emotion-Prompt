@@ -20,8 +20,8 @@ OPENAI_MODELS = [
 def arg_parse():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--test_file", type=str, help="test file path")
-    parser.add_argument("--emotion_prompt_path", type=str, help="emotion_prompts file path")
+    parser.add_argument("--test_file", type=str, default="data/math/2024_math.json", help="test file path")
+    parser.add_argument("--emotion_prompt_path", type=str, default="emotion_prompt.json", help="emotion_prompts file path")
     parser.add_argument("--save_path", type=str, default="result/math/2024_math", help="save path")
     parser.add_argument("--model", type=str, help=f"select openAI model to use: {OPENAI_MODELS}")
     parser.add_argument("--is_front", type=bool, help="If it's true, prompt will be appended after the system message, and if it's false, it will be appended after the question.")
