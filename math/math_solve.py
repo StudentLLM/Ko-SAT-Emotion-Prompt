@@ -46,8 +46,7 @@ def total_score_test(data):
     total_score = 0
 
     for pa in data:
-        for problem in pa["problems"]:
-            total_score += problem["score"]
+        total_score += pa["score"]
 
     assert (total_score == 100)
     print("test passed")
@@ -86,24 +85,33 @@ def main():
     with open(args.emotion_prompt_path, 'rb') as f:
         emotion_prompts = json.load(f)
 
-    _id = 0
-
     def get_answer(problem, _id, is_front, ep, fw):
         prompt_func = get_prompt_by_type(int(problem["type"]))
         answer = None
 
         for i in range(3):
             try:
-                answer = prompt_func(
-                    model=model,
-                    question=problem["question"],
-                    choices=problem["choices"],
-                    question_plus=problem["question_plus"],
-                    is_front=is_front,
-                    emotion_prompt=ep
-                )
-                logging.info(answer)
-                break
+                if int(problem["type"]) == 0:
+                    answer = prompt_func(
+                        model=model,
+                        question=problem["question"],
+                        choices=problem["choices"],
+                        question_plus=problem["question_plus"],
+                        is_front=is_front,
+                        emotion_prompt=ep
+                    )
+                    logging.info(answer)
+                    break
+                else:
+                    answer = prompt_func(
+                        model=model,
+                        question=problem["question"],
+                        question_plus=problem["question_plus"],
+                        is_front=is_front,
+                        emotion_prompt=ep
+                    )
+                    logging.info(answer)
+                    break
             except Exception as e:
                 print(f"RETRY, Failed! id: {_id} exception: {str(e)}")
 
@@ -119,6 +127,7 @@ def main():
         fw.flush()
 
     for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
+        _id = 0
         ep1 = copy.copy(ep)
         ep1 += args.cot_message if args.cot_apply else ""
         with open(save_path + "_ep" + str(ep_index) + ".txt", "w", encoding="UTF-8") as fw:

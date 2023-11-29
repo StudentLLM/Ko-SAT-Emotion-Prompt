@@ -96,7 +96,6 @@ def main():
         raise ValueError("test file not set!")
     if not save_path:
         raise ValueError("save path not set!")
-    logging.basicConfig(filename=f"{save_path.split('.')[0]}_log.log", level=logging.INFO)
 
     set_openai_key()
     if model not in OPENAI_MODELS:
@@ -106,11 +105,11 @@ def main():
     with open(args.emotion_prompt_path, 'rb') as f:
         emotion_prompts = json.load(f)
 
-    _id = 0
     for ep_index, ep in tqdm(enumerate(emotion_prompts), total=len(emotion_prompts)):
+        _id = 0
         ep1 = copy.copy(ep)
         ep1 += args.cot_message if args.cot_apply else ""
-        with open(save_path + "_" + str(ep_index), "w", encoding="UTF-8") as fw:
+        with open(save_path + "_ep" + str(ep_index) + ".txt", "w", encoding="UTF-8") as fw:
             for paragraph_index, paragraph in enumerate(test):
                 prompt_func = get_prompt_by_type(int(paragraph["type"]))
                 for problem_index, problem in tqdm(enumerate(paragraph["problems"]), total=len(paragraph["problems"])):

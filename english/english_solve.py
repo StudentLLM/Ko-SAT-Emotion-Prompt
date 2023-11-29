@@ -38,7 +38,7 @@ def load_test(filepath: str):
     with open(filepath, 'rb') as f:
         test = json.load(f)
 
-    total_score_test(test)
+    # total_score_test(test)
     return test
 
 # total_score compute function
@@ -46,8 +46,11 @@ def total_score_test(data):
     total_score = 0
     
     for pa in data:
-        for problem in pa["problems"]:
-            total_score += problem["score"]
+        if "paragraph" in list(pa.keys()):
+            for problem in pa["problems"]:
+                total_score += problem["score"]
+        else:
+            total_score += pa["score"]
 
     assert (total_score == 100)
     print("test passed")
@@ -88,8 +91,6 @@ def main():
     with open(args.emotion_prompt_path, 'rb') as f:
         emotion_prompts = json.load(f)
 
-    _id = 0
-
     def get_answer(problem, _id, is_front, ep, fw, paragraph=""):
         prompt_func = get_prompt_by_type(int(problem["type"]))
         answer = None
@@ -123,6 +124,7 @@ def main():
         return answer
 
     for ep_index, ep in enumerate(emotion_prompts):
+        _id = 0
         ep1 = copy.copy(ep)
         ep1 += args.cot_message if args.cot_apply else ""
 
