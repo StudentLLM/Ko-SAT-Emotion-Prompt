@@ -143,6 +143,7 @@
       },
       {
         "question": "문맥상 ⓐ～ⓔ와 바꿔 쓰기에 가장 적절한 것은?",
+        "type": 3,
         "score": 2,
         "answer": 2,
         "choices": [
@@ -224,6 +225,7 @@
       },
       {
         "question": "ⓐ와 문맥상 의미가 가장 가까운 것은?",
+        "type": 3,
         "score": 2,
         "answer": 4,
         "choices": [
