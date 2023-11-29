@@ -4,7 +4,6 @@ import os
 
 import click
 import openai
-from dotenv import load_dotenv
 from tqdm import tqdm
 
 from korean_prompts import literature_prompt, grammar_prompt
