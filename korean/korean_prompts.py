@@ -59,8 +59,7 @@ def literature_prompt(model, paragraph, question, choices, question_plus="", no_
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ], 
-        top_p=0.8,
-        frequency_penalty=0.5
+        top_p=0
     )
     
     return completion.choices[0].message.content
@@ -133,8 +132,7 @@ def grammar_prompt(model, paragraph, question, choices, question_plus="", no_par
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ], 
-        top_p=0.8,
-        frequency_penalty=0.5
+        top_p=0
     )
     
     return completion.choices[0].message.content
