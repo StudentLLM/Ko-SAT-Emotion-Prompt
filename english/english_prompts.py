@@ -226,14 +226,7 @@ def grammar_prompt(model, question, choices, is_front, emotion_prompt, question_
         top_p=0
     )
     
-    return completion = openai.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ],
-        top_p=0
-    )
+    return completion.choices[0].message.content
     
 def insert_prompt(model, question, choices, is_front, emotion_prompt, question_plus=""):
     system_prompt = "대학수학능력검정시험 영어 영역을 응시하는 대한민국의 n수생(수험생)으로서 다음의 문제의 답을 구하시오. "
@@ -291,11 +284,4 @@ def insert_prompt(model, question, choices, is_front, emotion_prompt, question_p
         top_p=0
     )
     
-    return completion = openai.chat.completions.create(
-        model=model,
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt}
-        ],
-        top_p=0
-    )
+    return completion.choices[0].message.content
