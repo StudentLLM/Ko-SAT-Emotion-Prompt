@@ -50,8 +50,7 @@ def basic_prompt(model, question, choices, question_plus="", is_front=False, emo
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ],
-        top_p=0.8,
-        frequency_penalty=0.5
+        top_p=0
     )
     return completion.choices[0].message.content
 
@@ -92,7 +91,6 @@ def no_choice_prompt(model, question, question_plus="", is_front=False, emotion_
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ],
-        top_p=0.8,
-        frequency_penalty=0.5
+        top_p=0
     )
     return completion.choices[0].message.content
