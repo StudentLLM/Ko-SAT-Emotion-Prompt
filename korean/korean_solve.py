@@ -131,12 +131,7 @@ def main():
                         print(f"RETRY FAILED id: {_id}")
                         continue
 
-                    fw.write(f"""{_id}번 문제: {problem['question']}
-                            EmotionPrompt: {ep}
-                            정답: {problem['answer']}
-                            배점: {problem['score']}
-                            GPT 풀이: {answer}
-                            ----------------------\n""")
+                    fw.write(f"""{_id}번 문제: {problem['question']}\nEmotionPrompt: {ep}\nGPT 풀이: {answer}\n정답: {problem['answer']}\n배점: {problem['score']}\n----------------------\n""")
                     fw.flush()
 
 
