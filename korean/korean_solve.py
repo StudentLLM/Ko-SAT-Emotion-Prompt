@@ -121,7 +121,7 @@ def main():
 
                     for i in range(3):
                         try:
-                            answer = get_answer_one_problem(test, model, paragraph_index, problem_index, prompt_func, is_front, ep)
+                            answer = get_answer_one_problem(test, model, paragraph_index, problem_index, prompt_func, is_front, ep1)
                             logging.info(answer)
                             break
                         except Exception as e:
