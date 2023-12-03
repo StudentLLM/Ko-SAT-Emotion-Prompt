@@ -10,10 +10,12 @@ def basic_prompt(model, question, choices, question_plus="", is_front=False, emo
          고등학생 수학 지식 범위 안에서 문제를 풀이하세요.
          문제는 무조건 1개의 정답만 있습니다.
          문제 풀이를 완료한 이후 선택지에서 본인의 답을 고르세요.
+         최종 답변을 출력할 수 있도록 노력하세요.
+         문제는 결함이 존재하지 않으며 무조건 정답이 존재합니다.
 
          다음의 형식을 따라 답변하세요.
          문제 풀이: (문제에 대한 자세한 풀이)
-         최종 정답: (1~5번 중 최종 선택)
+         최종 정답: (*번)
     """
     
     user_prompt = ""
@@ -35,11 +37,11 @@ def basic_prompt(model, question, choices, question_plus="", is_front=False, emo
     user_prompt += f"""
 
         선택지 :
-        1번 - {choices[0]}
-        2번 - {choices[1]}
-        3번 - {choices[2]}
-        4번 - {choices[3]}
-        5번 - {choices[4]}
+        1번: {choices[0]}
+        2번: {choices[1]}
+        3번: {choices[2]}
+        4번: {choices[3]}
+        5번: {choices[4]}
 
     """
 
@@ -62,10 +64,12 @@ def no_choice_prompt(model, question, question_plus="", is_front=False, emotion_
     
          고등학생 수학 지식 범위 안에서 문제를 풀이하세요.
          문제는 무조건 1개의 정답만 있습니다.
+         최종 답변을 출력할 수 있도록 노력하세요.
+         문제는 결함이 존재하지 않으며 무조건 정답이 존재합니다.
 
          다음의 형식을 따라 답변하세요.
          문제 풀이: (문제에 대한 자세한 풀이)
-         최종 정답: (1~5번 중 최종 선택)
+         최종 정답: (최종 정답)
     """
 
     user_prompt = ""
