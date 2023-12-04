@@ -1,0 +1,212 @@
+[
+    {
+        "question_id": "2",
+        "question": "$\\displaystyle \\lim_{x \\to \\infty} \\frac{\\sqrt{x^{2}-2}+3x}{x+5}$의 값은?",
+        "question_plus": "",
+        "choices": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+        ],
+        "answer": 4,
+        "score": 2
+    },
+    {
+        "question_id": "4",
+        "question": "다항함수 $f(x)$에 대하여 함수 $g(x)$를\n$g(x)=x^{2}f(x)$\n라 하자. $f(2)=1, f'(2)=3$일 때, $g'(2)$의 값은?",
+        "question_plus": "",
+        "choices": [
+            "12",
+            "14",
+            "16",
+            "18",
+            "20"
+        ],
+        "answer": 3,
+        "score": 3
+    },
+    {
+        "question_id": "6",
+        "question": "함수 $f(x)=2x^{3}-9x^{2}+ax+5$는 $x=1$에서 극대이고, $x=b$에서 극소이다. $a+b$의 값은?",
+        "question_plus": "[조건]\n단, $a, b$는 상수이다.",
+        "choices": [
+            "12",
+            "14",
+            "16",
+            "18",
+            "20"
+        ],
+        "answer": 2,
+        "score": 3
+    },
+    {
+        "question_id": "8",
+        "question": "점 $(0, 4)$에서 곡선 $y=x^{3}-x+2$에 그은 접선의 $x$절편은?",
+        "question_plus": "",
+        "choices": [
+            "-\\frac{1}{2}",
+            "-1",
+            "-\\frac{3}{2}",
+            "-2",
+            "-\\frac{5}{2}"
+        ],
+        "answer": 4,
+        "score": 3
+    },
+    {
+        "question_id": "10",
+        "question": "두 곡선 $y=x^{3}+x^{2}, y=-x^{2}+k$와 $y$축으로 둘러싸인 부분의 넓이를 $A$, 두 곡선 $y=x^{3}+x^{2}, y=-x^{2}+k$와 직선 $x=2$로 둘러싸인 부분의 넓이를 $B$라 하자. $A=B$일 때, 상수 $k$의 값은?",
+        "question_plus": "[조건]\n단, $4<k<5$",
+        "choices": [
+            "$\\frac{25}{6}$",
+            "$\\frac{13}{3}$",
+            "$\\frac{9}{2}$",
+            "$\\frac{14}{3}$",
+            "$\\frac{29}{6}$"
+        ],
+        "answer": 4,
+        "score": 4
+    },
+    {
+        "question_id": "12",
+        "question": "실수 전체의 집합에서 연속인 함수 $f(x)$가 다음 조건을 만족시킨다. 열린구간 $(0, 4)$에서 정의된 함수\n\n$g(x)=\\int_{0}^{x}f(t)dt-\\int_{x}^{4}f(t)dt$\n\n가 $x=2$에서 최솟값 $0$을 가질 때, $\\int_{\\frac{1}{2}}^{4}f(x)dx$의 값은?",
+        "question_plus": "[조건]\n$n-1\\leq x<n$일 때, $|f(x)|=|6(x-n+1)(x-n)|$이다. (단, $n$은 자연수이다.)",
+        "choices": [
+            "-\\frac{3}{2}",
+            "-\\frac{1}{2}",
+            "\\frac{1}{2}",
+            "\\frac{3}{2}",
+            "\\frac{3}{2}"
+        ],
+        "answer": 2,
+        "score": 4
+    },
+    {
+        "question_id": "14",
+        "question": "다항함수 $f(x)$에 대하여 함수 $g(x)$를 다음과 같이 정의한다.\n\n$g(x)=\\left\\{\\begin{matrix}x & (x<-1 or x>1) \\f(x) & (-1\\leq x\\leq 1) \\\\end{matrix}\\right.$\n\n함수 $h(x)=\\displaystyle \\lim_{t \\to 0+}g(x+t) \\times \\displaystyle \\lim_{t \\to 2+}g(x+t)$에 대하여 [보기]에서 옳은 것만을 있는 대로 고른 것은?",
+        "question_plus": "[보기]\nㄱ. $h(1)=3$\nㄴ. 함수 $h(x)$는 실수 전체의 집합에서 연속이다.\nㄷ. 함수 $g(x)$가 닫힌구간 $[-1, 1]$dptj rkathgkrh $ㅎ(-1)=-2$이면 함수 $h(x)$는 실수 전체의 집합에서 최솟값을 갖는다.",
+        "choices": [
+            "ㄱ",
+            "ㄴ",
+            "ㄱ, ㄴ",
+            "ㄱ, ㄷ",
+            "ㄴ, ㄷ"
+        ],
+        "answer": 1,
+        "score": 4
+    },
+    {
+        "question_id": "16",
+        "question": "방정식 $\\log_{2}(3x+2)=2+\\log_{2}(x-2)$를 만족시키는 실수 $x$의 값을 구하시오.",
+        "question_plus": "",
+        "choices": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "answer": 10,
+        "score": 3
+    },
+    {
+        "question_id": "18",
+        "question": "두 수열 $\\{a_{n}\\}, \\{b_{n}\\}$에 대하여\n\n$\\sum_{k=1}^{5}(3a_{k}+5)=55, \\sum_{k=1}^{5}(a_{k}+b_{k})=32$일 때, $\\sum_{k=1}^{5}b_{k}$의 값을 구하시오.",
+        "question_plus": "",
+        "choices": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "answer": 22,
+        "score": 3
+    },
+    {
+        "question_id": "20",
+        "question": "수직선 위를 움직이는 점 $P$의 시각 $t(t \\geq 0)$에서의 속도 $v(t)$와 가속도 $a(t)$가 다음 [조건]을 만족시킨다. 시각 $t=0$에서 $t=3$까지 점 $P$가 움직인 거리를 구하시오.",
+        "question_plus": "[조건]\n(가) $0 \\leq t \\leq 2$일 때, $v(t)=2t^{3}-8t$이다.\n(나) $t \\geq 2$일 때, $a(t)=6t+4$이다.",
+        "choices": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "answer": 17,
+        "score": 4
+    },
+    {
+        "question_id": "22",
+        "question": "최고차항의 계수가 1인 삼차함수 $f(x)$와 실수 전체의 집합에서 연속인 함수 $g(x)$가 다음 [조건]을 만족시킬 때, $f(4)$의 값을 구하시오.",
+        "question_plus": "[조건]\n(가) 모든 실수 $x$에 대하여 $f(x)=f(1)+(x-1)f'(g(x))$이다.\n(나) 함수 $g(x)$의 최솟값은 $\\frac{5}{2}$이다.\n(다) $f(0)=-3, f(g(1))=6$",
+        "choices": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "answer": 13,
+        "score": 4
+    },
+    {
+        "question_id": "24",
+        "question": "숫자 1, 2, 3, 4, 5 중에서 중복을 허락하여 4개를 택해 일렬로 나열하여 만들 수 있는 네 자리의 자연수 중 4000 이상인 홀수의 개수는?",
+        "question_plus": "",
+        "choices": [
+            "125",
+            "150",
+            "175",
+            "200",
+            "225"
+        ],
+        "answer": 2,
+        "score": 3
+    },
+    {
+        "question_id": "26",
+        "question": "주머니에 1이 적힌 흰 공 1개, 2가 적힌 흰 공 1개, 1이 적힌 검은 공 1개, 2가 적힌 검은 공 3개가 들어 있다. 이 주머니에서 임의로 3개의 공을 동시에 꺼내는 시행을 한다. 이 시행에서 꺼낸 3개의 공 중에서 흰 공이 1개이고 검은 공이 2개인 사건을 $A$, 꺼낸 3개의 공에 적혀 있는 수를 모두 곱한 값이 8인 사건을 $B$라 할 때, $P(A \\cup B)$의 값은?",
+        "question_plus": "",
+        "choices": [
+            "\\frac{11}{20}",
+            "\\frac{3}{5}",
+            "\\frac{13}{20}",
+            "\\frac{7}{10}",
+            "\\frac{3}{4}"
+        ],
+        "answer": 3,
+        "score": 3
+    },
+    {
+        "question_id": "28",
+        "question": "연속확률변수 $X$가 갖는 값의 범위는 $0 \\leq X \\leq a$이고, $X$의 확률밀도함수의 그래프가 있다. $P(X \\leq b)-P(X \\geq b)=\\frac{1}{4}, P(X \\leq \\sqrt{5})=\\frac{1}{2}$일 때, $a+b+c$의 값은?",
+        "question_plus": "[조건]\n단, $a, b, c$는 상수이다.",
+        "choices": [
+            "\\frac{11}{2}",
+            "6",
+            "\\frac{13}{2}",
+            "7",
+            "\\frac{15}{2}"
+        ],
+        "answer": 4,
+        "score": 4
+    },
+    {
+        "question_id": "30",
+        "question": "집합 $X=\\{x|x는 10 이하의 자연수}$에 대하여 다음 [조건]을 만족시키는 함수 $f: X \\to X$의 개수를 구하시오.",
+        "question_plus": "[조건]\n(가) 9 이하의 모든 자연수 $x$에 대하여 $f(x) \\leq f(x+1)$이다.\n(나) $1 \\leq x \\leq 5$일 때 $f(x) \\leq x$이고, $6 \\leq x \\leq 10$일 때 $f(x) \\geq x$이다.\n(다) $f(6)=f(5)+6$",
+        "choices": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ],
+        "answer": 100,
+        "score": 4
+    }
+]

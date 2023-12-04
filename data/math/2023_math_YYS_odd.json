@@ -1,0 +1,16 @@
+[
+    {
+        "question_id": "1",
+        "question": "\sqrt[3]{24} \times 3^{\frac{2}{3}}의 값은?",
+        "question_plus": "",
+        "choices": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "answer": 1,
+        "score": 2
+    },
+]
