@@ -2,51 +2,51 @@
     {
         "type": 0,
         "question_id": "1",
-        "question": "",
+        "question": "(\\frac{4}{2^{\\sqrt{2}}})^{2+\\sqrt{2}}",
         "question_plus": "",
         "choices": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "\\frac{1}{4}",
+            "\\frac{1}{2}",
+            "1",
+            "2",
+            "4"
         ],
         "answer": ,
-        "score": 
+        "score": 2
     },
     {
         "type": 0,
-        "question_id": "1",
-        "question": "",
+        "question_id": "3",
+        "question": "공비가 양수인 등비수열 {a_n}이\n\na_2+a_4=30, a_4+a_6=\\frac{15}{2}\n\n를 만족시킬 때, a_1의 값은?",
         "question_plus": "",
         "choices": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "48",
+            "56",
+            "64",
+            "72",
+            "80"
         ],
         "answer": ,
-        "score": 
+        "score": 3
     },
     {
         "type": 0,
-        "question_id": "1",
-        "question": "",
+        "question_id": "5",
+        "question": "\\tan{\\theta)<0이고 \\cos(\\frac{\\pi}{2}+\\theta)=\\frac{\\sqrt{5}}{5}일 때, \\cos{\\theta}의 값은?",
         "question_plus": "",
         "choices": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "-\\frac{2\\sqrt{5}}{5}",
+            "-\\frac{\\sqrt{5}}{5}",
+            "0",
+            "\\frac{\\sqrt{5}}{5}",
+            "\\frac{2\\sqrt{5}}{5}"
         ],
         "answer": ,
-        "score": 
+        "score": 3
     },
     {
         "type": 0,
-        "question_id": "1",
+        "question_id": "7",
         "question": "",
         "question_plus": "",
         "choices": [
