@@ -47,66 +47,66 @@
     {
         "type": 0,
         "question_id": "7",
-        "question": "",
+        "question": "모든 항이 양수이고 첫째항과 공차가 같은 등비수열 {a_n}이\n\n\\sum_{k=1}^{15}\\frac{1}{\\sqrt{a_k}+\\sqrt{a_{k+1}}}=2\n\n를 만족시킬 때, a_4의 값은?",
         "question_plus": "",
         "choices": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
+        ],
+        "answer": ,
+        "score": 3
+    },
+    {
+        "type": 0,
+        "question_id": "9",
+        "question": "함수\n\nf(x)=a-\\sqrt{3}\\tan{2x}\n\n가 닫힌구간 [-\\frac{\\pi}{6}, b]에서 최댓값 7, 최솟값 3을 가질 때, a \\times b의 값은?",
+        "question_plus": "단, a, b는 상수이다.",
+        "choices": [
+            "\\frac{\\pi}{2}",
+            "\\frac{5\\pi}{12}"",
+            "\\frac{\\pi}{3}"",
+            "\\frac{\\pi}{4}"",
+            "\\frac{\\pi}{6}""
+        ],
+        "answer": ,
+        "score": 4
+    },
+    {
+        "type": 0,
+        "question_id": "11",
+        "question": "다음과 같이 사각형 ABCD가 한 원에 내접하고\n\n\\bar{AB}=5, \\bar{AC}=3\\sqrt{5}, \\bar{AD}=7, \\angle{BAC}=\\angle{CAD}\n\n일 때, 이 원의 반지름의 길이는?",
+        "question_plus": "",
+        "choices": [
+            "\\frac{5\\sqrt{2}}{2}",
+            "\\frac{8\\sqrt{5}}{5}",
+            "\\frac{5\\sqrt{5}}{3}",
+            "\\frac{8\\sqrt{2}}{3}",
+            "\\frac{9\\sqrt{3}}{4}"
+        ],
+        "answer": ,
+        "score": 4
+    },
+    {
+        "type": 0,
+        "question_id": "13",
+        "question": "자연수 m(m \\geq 2)에 대하여 m^{12}의 n제곱근 중에서 정수가 존재하도록 하는 2 이상의 자연수 n의 개수를 f(m)이라고 할 때, \\sum_{m=2}^{9}f(m)의 값은?",
+        "question_plus": "",
+        "choices": [
+            "37",
+            "42",
+            "47",
+            "52",
+            "57"
         ],
         "answer": ,
         "score": 
     },
     {
         "type": 0,
-        "question_id": "1",
-        "question": "",
-        "question_plus": "",
-        "choices": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "answer": ,
-        "score": 
-    },
-    {
-        "type": 0,
-        "question_id": "1",
-        "question": "",
-        "question_plus": "",
-        "choices": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "answer": ,
-        "score": 
-    },
-    {
-        "type": 0,
-        "question_id": "1",
-        "question": "",
-        "question_plus": "",
-        "choices": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ],
-        "answer": ,
-        "score": 
-    },
-    {
-        "type": 0,
-        "question_id": "1",
+        "question_id": "15",
         "question": "",
         "question_plus": "",
         "choices": [
